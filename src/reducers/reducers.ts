@@ -1,7 +1,8 @@
 import {initialReduxStoreState} from '../store/store';
-import {Action, ACTION_TYPES} from "../store/actions";
+import {ACTION_TYPES} from "../store/actions";
 
-export const rootReducer = (state = initialReduxStoreState, action: Action) => {
+// TODO: Need to find a way to be able to type the action, for better code autocomplete.
+export const rootReducer = (state = initialReduxStoreState, action: any) => {
 
   // if (action.type === ACTION_TYPES.FETCH_EXPENSE_CLAIMS) {
   //   return Object.assign({}, state, {
@@ -13,13 +14,14 @@ export const rootReducer = (state = initialReduxStoreState, action: Action) => {
   //   });
   // }
   //
-  // if (action.type === ACTION_TYPES.CREATE_EXPENSE_CLAIM) {
-  //   localStorage.clear();
-  //   return state;
-  // }
+
+  if (action.type === ACTION_TYPES.CLEAR_LOCAL_DATA) {
+    console.log('arrived at reducer with value: ', action.someCode);
+    localStorage.clear();
+    return state;
+  }
 
   if (action.type === ACTION_TYPES.FETCH_USERS) {
-    console.log('arrived at reducer with value: ', action.payload);
     return Object.assign({}, state, {
       users: action.payload
     });

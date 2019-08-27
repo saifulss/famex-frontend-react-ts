@@ -3,14 +3,14 @@ import {Component} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {InitialReduxStoreState} from "../store/store";
-import {fetchUsers} from "../store/action-creators";
+import {clearLocalData} from "../store/action-creators";
 
 
 interface HomeViewState {}
 
 type HomeViewProps = {
   initialCount?: number;
-  onSomeEvent?: (code: string) => void
+  onSomeEvent?: (someCode: string) => void
 };
 
 class BaseHomeView extends Component<HomeViewProps, HomeViewState> {
@@ -49,7 +49,7 @@ const mapStateToProps = (state: InitialReduxStoreState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  onSomeEvent: (someCode: string) => dispatch(fetchUsers(someCode))
+  onSomeEvent: (someCode: string) => dispatch(clearLocalData(someCode))
 });
 
 export const HomeView = connect(mapStateToProps, mapDispatchToProps)(BaseHomeView);

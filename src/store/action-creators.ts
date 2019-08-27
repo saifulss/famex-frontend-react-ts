@@ -1,22 +1,14 @@
 import {ACTION_TYPES} from "./actions";
 
-// export const createExpenseClaim = () => ({
-//   type: ACTION_TYPES.CREATE_EXPENSE_CLAIM,
-// });
-
-export interface FetchUsersPayload {
-  users: object[]
-}
-
-export interface fetchUsers {
+export interface clearLocalData {
   type: string,
-  payload: string
+  someCode: string
 }
 
-export const fetchUsers = (someCode: string): fetchUsers => {
+export const clearLocalData = (someCode: string): clearLocalData => {
   console.log('action creator will return action now');
   return {
-    type: ACTION_TYPES.FETCH_USERS,
-    payload: someCode
+    type: ACTION_TYPES.CLEAR_LOCAL_DATA,
+    someCode: someCode
   };
 };
