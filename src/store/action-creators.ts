@@ -12,3 +12,15 @@ export const clearLocalData = (someCode: string): clearLocalData => {
     someCode: someCode
   };
 };
+
+export interface fetchUsers {
+  type: string,
+  someMetaDescribingTheNetworkCall: string
+}
+
+export const fetchUsers = (something: string): fetchUsers => {
+  return {
+    type: ACTION_TYPES.FETCH_USERS,
+    someMetaDescribingTheNetworkCall: something
+  };
+};

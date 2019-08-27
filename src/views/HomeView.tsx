@@ -3,14 +3,15 @@ import {Component} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {InitialReduxStoreState} from "../store/store";
-import {clearLocalData} from "../store/action-creators";
+import {clearLocalData, fetchUsers} from "../store/action-creators";
 
 
 interface HomeViewState {}
 
 type HomeViewProps = {
   initialCount?: number;
-  onSomeEvent?: (someCode: string) => void
+  onSomeEvent?: (someCode: string) => void;
+  onTimeToFetch?: (something: string) => void;
 };
 
 class BaseHomeView extends Component<HomeViewProps, HomeViewState> {
@@ -25,6 +26,9 @@ class BaseHomeView extends Component<HomeViewProps, HomeViewState> {
     console.log(this.props);
 
     if (this.props.onSomeEvent !== undefined) this.props.onSomeEvent('015');
+    else throw new Error("Why are you undefined, silly prop?");
+
+    if (this.props.onTimeToFetch !== undefined) this.props.onTimeToFetch('meta-meta');
     else throw new Error("Why are you undefined, silly prop?");
   }
 
@@ -49,7 +53,8 @@ const mapStateToProps = (state: InitialReduxStoreState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  onSomeEvent: (someCode: string) => dispatch(clearLocalData(someCode))
+  onSomeEvent: (someCode: string) => dispatch(clearLocalData(someCode)),
+  onTimeToFetch: (something: string) => dispatch(fetchUsers(something))
 });
 
 export const HomeView = connect(mapStateToProps, mapDispatchToProps)(BaseHomeView);

@@ -22,8 +22,10 @@ export const rootReducer = (state = initialReduxStoreState, action: any) => {
   }
 
   if (action.type === ACTION_TYPES.FETCH_USERS) {
+    console.log(`action is: ${action}`);
+
     return Object.assign({}, state, {
-      users: action.payload
+      someMeta: action.someMetaDescribingTheNetworkCall
     });
   }
 

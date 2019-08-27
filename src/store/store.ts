@@ -4,12 +4,12 @@ import {rootReducer} from '../reducers/reducers';
 
 export interface InitialReduxStoreState {
   users: object[]
-  // someString: string
+  someMeta: string
 }
 
 export const initialReduxStoreState: InitialReduxStoreState = {
-  users: []
-  // someString: ''
+  users: [],
+  someMeta: ''
 };
 
 const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
