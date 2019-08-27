@@ -1,7 +1,6 @@
 import {initialReduxStoreState} from '../store/store';
 import {ACTION_TYPES} from "../store/actions";
 
-// TODO: Need to find a way to be able to type the action, for better code autocomplete.
 export const rootReducer = (state = initialReduxStoreState, action: any) => {
 
   // if (action.type === ACTION_TYPES.FETCH_EXPENSE_CLAIMS) {
@@ -15,8 +14,9 @@ export const rootReducer = (state = initialReduxStoreState, action: any) => {
   // }
   //
 
+// TODO: Need to find a way to be able to type the action, for better code autocomplete.
   if (action.type === ACTION_TYPES.CLEAR_LOCAL_DATA) {
-    console.log('arrived at reducer with value: ', action.someCode);
+    console.log('arrived at reducer with value: ', action.canBeAnything);
     localStorage.clear();
     return state;
   }
@@ -26,6 +26,14 @@ export const rootReducer = (state = initialReduxStoreState, action: any) => {
 
     return Object.assign({}, state, {
       someMeta: action.someMetaDescribingTheNetworkCall
+    });
+  }
+
+  if (action.type === ACTION_TYPES.UPDATE_USERS) {
+    console.log(`updating users...`);
+
+    return Object.assign({}, state, {
+      users: action.payload
     });
   }
 

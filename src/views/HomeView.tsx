@@ -10,8 +10,8 @@ interface HomeViewState {}
 
 type HomeViewProps = {
   initialCount?: number;
-  onSomeEvent?: (someCode: string) => void;
-  onTimeToFetch?: (something: string) => void;
+  onTimeToRunSomeSynchronousTask?: (someCode: string) => void;
+  onTimeToRunSomeAsyncTask?: (something: string) => void;
 };
 
 class BaseHomeView extends Component<HomeViewProps, HomeViewState> {
@@ -23,12 +23,10 @@ class BaseHomeView extends Component<HomeViewProps, HomeViewState> {
   // }
 
   componentDidMount(): void {
-    console.log(this.props);
-
-    if (this.props.onSomeEvent !== undefined) this.props.onSomeEvent('015');
+    if (this.props.onTimeToRunSomeSynchronousTask !== undefined) this.props.onTimeToRunSomeSynchronousTask('015');
     else throw new Error("Why are you undefined, silly prop?");
 
-    if (this.props.onTimeToFetch !== undefined) this.props.onTimeToFetch('meta-meta');
+    if (this.props.onTimeToRunSomeAsyncTask !== undefined) this.props.onTimeToRunSomeAsyncTask('meta-meta');
     else throw new Error("Why are you undefined, silly prop?");
   }
 
@@ -53,8 +51,8 @@ const mapStateToProps = (state: InitialReduxStoreState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  onSomeEvent: (someCode: string) => dispatch(clearLocalData(someCode)),
-  onTimeToFetch: (something: string) => dispatch(fetchUsers(something))
+  onTimeToRunSomeSynchronousTask: (something: string) => dispatch(clearLocalData(something)),
+  onTimeToRunSomeAsyncTask: (something: string) => dispatch(fetchUsers(something))
 });
 
 export const HomeView = connect(mapStateToProps, mapDispatchToProps)(BaseHomeView);

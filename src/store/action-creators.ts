@@ -2,25 +2,34 @@ import {ACTION_TYPES} from "./actions";
 
 export interface clearLocalData {
   type: string,
-  someCode: string
+  canBeAnything: string
 }
 
-export const clearLocalData = (someCode: string): clearLocalData => {
+export const clearLocalData = (something: string): clearLocalData => {
   console.log('action creator will return action now');
   return {
     type: ACTION_TYPES.CLEAR_LOCAL_DATA,
-    someCode: someCode
+    canBeAnything: something
   };
 };
 
-export interface fetchUsers {
-  type: string,
-  someMetaDescribingTheNetworkCall: string
-}
+const somePromiseToSimulateANetworkCall = new Promise((resolve, reject) => {
+  console.log('starting timer...');
+  setTimeout(() => {
+    console.log('got result!');
+    resolve('some result');
+  }, 10000);
+});
 
-export const fetchUsers = (something: string): fetchUsers => {
-  return {
-    type: ACTION_TYPES.FETCH_USERS,
-    someMetaDescribingTheNetworkCall: something
+export const fetchUsers = (someArgumentFromCallingCode: string): any => {
+  return (dispatch: any, getState: any) => {
+    console.log(getState());  // just to prove that we can actually get a handle on the Redux store state here, courtesy of redux-thunk
+
+    somePromiseToSimulateANetworkCall.then(result => {
+      dispatch({
+        type: ACTION_TYPES.UPDATE_USERS,
+        payload: result + someArgumentFromCallingCode
+      })
+    });
   };
 };
