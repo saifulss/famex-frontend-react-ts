@@ -1,23 +1,32 @@
 import * as React from 'react';
 import {Component} from 'react';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {InitialReduxStoreState} from "../store/store";
+import {fetchUsers} from "../store/action-creators";
 
-interface HomeViewProps {
-  // prop1: number;
-  // prop2: string;
-}
 
-interface HomeViewState {
-  // stateItem1: boolean;
-}
+interface HomeViewState {}
 
-export class HomeView extends Component<HomeViewProps, HomeViewState> {
+type HomeViewProps = {
+  initialCount?: number;
+  onSomeEvent?: (code: string) => void
+};
+
+class BaseHomeView extends Component<HomeViewProps, HomeViewState> {
   // constructor(props: HomeViewProps) {
   //   super(props);
   //   this.state = {
   //     stateItem1: false
   //   };
   // }
+
+  componentDidMount(): void {
+    console.log(this.props);
+
+    if (this.props.onSomeEvent !== undefined) this.props.onSomeEvent('015');
+    else throw new Error("Why are you undefined, silly prop?");
+  }
 
   render() {
     return (
@@ -34,3 +43,13 @@ export class HomeView extends Component<HomeViewProps, HomeViewState> {
     );
   }
 }
+
+const mapStateToProps = (state: InitialReduxStoreState) => ({
+  users: state.users,
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  onSomeEvent: (someCode: string) => dispatch(fetchUsers(someCode))
+});
+
+export const HomeView = connect(mapStateToProps, mapDispatchToProps)(BaseHomeView);

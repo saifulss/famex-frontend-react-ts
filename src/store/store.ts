@@ -1,0 +1,20 @@
+import {applyMiddleware, compose, createStore} from 'redux';
+import thunk from 'redux-thunk';
+import {rootReducer} from '../reducers/reducers';
+
+export interface InitialReduxStoreState {
+  users: object[]
+  // someString: string
+}
+
+export const initialReduxStoreState: InitialReduxStoreState = {
+  users: []
+  // someString: ''
+};
+
+const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+export const store = createStore(
+  rootReducer,
+  storeEnhancers(applyMiddleware(thunk)),
+);
