@@ -2,8 +2,8 @@ import * as React from 'react';
 import {Component} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {InitialReduxStoreState} from "../store/store";
-import {clearLocalData, fetchUsers} from "../store/action-creators";
+import {InitialReduxStoreState} from "../redux/store/store";
+import {clearLocalData, fetchUsers} from "../redux/actions/action-creators";
 
 
 interface HomeViewState {}

@@ -1,5 +1,5 @@
 import {initialReduxStoreState} from '../store/store';
-import {ACTION_TYPES} from "../store/actions";
+import {ACTION_TYPES} from "../actions/actions";
 
 export const rootReducer = (state = initialReduxStoreState, action: any) => {
 

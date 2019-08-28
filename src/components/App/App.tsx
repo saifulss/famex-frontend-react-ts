@@ -8,7 +8,7 @@ import {HomeView} from "../../views/HomeView";
 import {CreateExpenseClaimView} from "../../views/CreateExpenseClaimView";
 import {Error404View} from "../../views/Error404View";
 import {Provider} from "react-redux";
-import {store} from '../../store/store';
+import {store} from '../../redux/store/store';
 
 const history = createBrowserHistory();
 
