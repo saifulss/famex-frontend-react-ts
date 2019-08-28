@@ -8,7 +8,7 @@ cache:
     - node_modules
 
 script:
-  - npm test
+  - yarn test
 
 on:
   branch: master
