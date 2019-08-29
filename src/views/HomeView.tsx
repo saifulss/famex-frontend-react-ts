@@ -2,8 +2,6 @@ import * as React from 'react';
 import {Component} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {InitialReduxStoreState} from "../redux/store/store";
-import {clearLocalData, fetchUsers} from "../redux/actions/action-creators";
 import {sendMessage} from "../store/chat/actions";
 import {ChatActionTypes, Message} from "../store/chat/types";
 
@@ -17,14 +15,6 @@ type HomeViewProps = {
 };
 
 class BaseHomeView extends Component<HomeViewProps, HomeViewState> {
-  componentDidMount(): void {
-    if (this.props.onTimeToRunSomeSynchronousTask !== undefined) this.props.onTimeToRunSomeSynchronousTask('015');
-    else throw new Error("Why are you undefined, silly prop?");
-
-    if (this.props.onTimeToRunSomeAsyncTask !== undefined) this.props.onTimeToRunSomeAsyncTask('meta-meta');
-    else throw new Error("Why are you undefined, silly prop?");
-  }
-
   onButtonClick = () => {
     console.log('clicked');
     this.props.sendMessage({
@@ -52,13 +42,11 @@ class BaseHomeView extends Component<HomeViewProps, HomeViewState> {
   }
 }
 
-const mapStateToProps = (state: InitialReduxStoreState) => ({
+const mapStateToProps = (state: any) => ({
   users: state.users,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  onTimeToRunSomeSynchronousTask: (something: string) => dispatch(clearLocalData(something)),
-  onTimeToRunSomeAsyncTask: (something: string) => dispatch(fetchUsers(something)),
   sendMessage: (message: Message): ChatActionTypes => dispatch(sendMessage(message))
 });
 
