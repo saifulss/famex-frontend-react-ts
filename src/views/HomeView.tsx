@@ -25,7 +25,11 @@ class BaseHomeView extends Component<HomeViewProps, HomeViewState> {
       <div>
         HomeView
 
-        <div>
+        <div style={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "800px"
+        }}>
           <Link to="/">Home</Link>
           <Link to="/expense-claims">Claims</Link>
           <Link to="/expense-claims/1">Claim details</Link>
