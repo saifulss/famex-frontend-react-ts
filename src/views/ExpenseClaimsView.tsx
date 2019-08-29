@@ -1,28 +1,45 @@
 import * as React from 'react';
 import {Component} from 'react';
+import {connect} from "react-redux";
+import {fetchUsers} from "../store/user/actions";
+import {User} from "../store/user/types";
 
 interface ExpenseClaimsViewProps {
-  // prop1: number;
-  // prop2: string;
+  fetchUsers: typeof fetchUsers;
+  users: User[];
 }
 
-interface ExpenseClaimsViewState {
-  // stateItem1: boolean;
-}
+interface ExpenseClaimsState {}
 
-export class ExpenseClaimsView extends Component<ExpenseClaimsViewProps, ExpenseClaimsViewState> {
-  // constructor(props: ClaimsViewProps) {
-  //   super(props);
-  //   this.state = {
-  //     stateItem1: false
-  //   };
-  // }
+class BaseExpenseClaimsView extends Component<ExpenseClaimsViewProps, ExpenseClaimsState> {
+  componentDidMount(): void {
+    this.props.fetchUsers([
+      {
+        displayName: "xxx",
+        email: "xxx@xxx.com"
+      }
+    ]);
+  }
 
   render() {
+    if (!this.props.users) return null;
+
     return (
       <div>
-        ClaimsView
+        {this.props.users.map(user => <div>{user.displayName}'s email is: {user.email}</div>)}
       </div>
     );
   }
 }
+
+const mapStateToProps = (state: any) => ({
+  users: state.user.users
+});
+
+// const mapDispatchToProps = (dispatch: any) => {
+//
+// };
+
+const mapDispatchToProps = {fetchUsers};
+
+export const ExpenseClaimsView = connect(mapStateToProps, mapDispatchToProps)(BaseExpenseClaimsView);
