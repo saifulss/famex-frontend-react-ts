@@ -8,7 +8,7 @@ const initialState: SystemState = {
   userName: ''
 };
 
-export function systemReducer(state = initialState, action: SystemActionTypes): SystemState {
+export const systemReducer = (state = initialState, action: SystemActionTypes): SystemState => {
   switch (action.type) {
     case UPDATE_SESSION: {
       return {
@@ -19,4 +19,4 @@ export function systemReducer(state = initialState, action: SystemActionTypes): 
     default:
       return state
   }
-}
+};
