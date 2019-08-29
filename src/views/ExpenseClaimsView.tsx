@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component} from 'react';
 import {connect} from "react-redux";
-import {fetchUsers} from "../store/user/actions";
+import {fetchUsers, mockAsyncCall} from "../store/user/actions";
 import {User} from "../store/user/types";
 
 interface ExpenseClaimsViewProps {
@@ -13,12 +13,10 @@ interface ExpenseClaimsState {}
 
 class BaseExpenseClaimsView extends Component<ExpenseClaimsViewProps, ExpenseClaimsState> {
   componentDidMount(): void {
-    this.props.fetchUsers([
-      {
-        displayName: "xxx",
-        email: "xxx@xxx.com"
-      }
-    ]);
+    mockAsyncCall().then(result => {
+      console.log(result);
+      this.props.fetchUsers(result);
+    });
   }
 
   render() {
@@ -26,7 +24,7 @@ class BaseExpenseClaimsView extends Component<ExpenseClaimsViewProps, ExpenseCla
 
     return (
       <div>
-        {this.props.users.map(user => <div>{user.displayName}'s email is: {user.email}</div>)}
+        {this.props.users.map(user => <div key={user.email}>{user.displayName}'s email is: {user.email}</div>)}
       </div>
     );
   }
