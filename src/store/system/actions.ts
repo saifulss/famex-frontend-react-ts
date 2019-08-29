@@ -1,8 +1,6 @@
 import {SystemActionTypes, SystemState, UPDATE_SESSION} from './types'
 
-export function updateSession(newSession: SystemState): SystemActionTypes {
-  return {
-    type: UPDATE_SESSION,
-    payload: newSession
-  }
-}
+export const updateSession = (newSession: SystemState): SystemActionTypes => ({
+  type: UPDATE_SESSION,
+  payload: newSession
+});

@@ -1,5 +1,3 @@
-// src/store/chat/reducers.ts
-
 import {ChatActionTypes, ChatState, DELETE_MESSAGE, SEND_MESSAGE} from './types'
 
 const initialState: ChatState = {
