@@ -16,13 +16,13 @@ export const rootReducer = (state = initialReduxStoreState, action: any) => {
 
 // TODO: Need to find a way to be able to type the action, for better code autocomplete.
   if (action.type === ACTION_TYPES.CLEAR_LOCAL_DATA) {
-    console.log('arrived at reducer with value: ', action.canBeAnything);
+    // console.log('arrived at reducer with value: ', action.canBeAnything);
     localStorage.clear();
     return state;
   }
 
   if (action.type === ACTION_TYPES.FETCH_USERS) {
-    console.log(`action is: ${action}`);
+    // console.log(`action is: ${action}`);
 
     return Object.assign({}, state, {
       someMeta: action.someMetaDescribingTheNetworkCall

@@ -6,7 +6,7 @@ export interface clearLocalData {
 }
 
 export const clearLocalData = (something: string): clearLocalData => {
-  console.log('action creator will return action now');
+  // console.log('action creator will return action now');
   return {
     type: ACTION_TYPES.CLEAR_LOCAL_DATA,
     canBeAnything: something
@@ -14,7 +14,7 @@ export const clearLocalData = (something: string): clearLocalData => {
 };
 
 const somePromiseToSimulateANetworkCall = new Promise((resolve, reject) => {
-  console.log('starting timer...');
+  // console.log('starting timer...');
   setTimeout(() => {
     console.log('got result!');
     resolve('some result');
@@ -23,7 +23,7 @@ const somePromiseToSimulateANetworkCall = new Promise((resolve, reject) => {
 
 export const fetchUsers = (someArgumentFromCallingCode: string): any => {
   return (dispatch: any, getState: any) => {
-    console.log(getState());  // just to prove that we can actually get a handle on the Redux store state here, courtesy of redux-thunk
+    // console.log(getState());  // just to prove that we can actually get a handle on the Redux store state here, courtesy of redux-thunk
 
     somePromiseToSimulateANetworkCall.then(result => {
       dispatch({
