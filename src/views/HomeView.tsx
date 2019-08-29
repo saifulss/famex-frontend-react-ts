@@ -17,14 +17,6 @@ type HomeViewProps = {
 };
 
 class BaseHomeView extends Component<HomeViewProps, HomeViewState> {
-  // constructor(props: HomeViewProps) {
-  //   super(props);
-
-  // this.state = {
-  //   stateItem1: false
-  // };
-  // }
-
   componentDidMount(): void {
     if (this.props.onTimeToRunSomeSynchronousTask !== undefined) this.props.onTimeToRunSomeSynchronousTask('015');
     else throw new Error("Why are you undefined, silly prop?");
