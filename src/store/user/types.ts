@@ -4,20 +4,26 @@ export interface User {
 }
 
 export interface UserState {
-  users: User[]
-}
-
-export const FETCH_USERS = "FETCH_USERS";
-
-export interface FetchUsersAction {
-  type: typeof FETCH_USERS;
+  currentUser?: User;
   users: User[];
 }
 
-// export const FETCH_USER = "FETCH_USER";
-// export interface FetchUserAction {
-//   type: typeof FETCH_USER;
-//   userId: number
-// }
+export const FETCH_USERS = "FETCH_USERS";
+export const UPDATE_FETCHED_USERS = "UPDATE_FETCHED_USERS";
+export const STORE_CURRENT_USER = "STORE_CURRENT_USER";
 
-export type UserActionTypes = /*FetchUserAction |*/ FetchUsersAction; // used for typing at reducers
+export interface FetchUsersAction {
+  type: typeof FETCH_USERS;
+}
+
+interface UpdateFetchedUsersAction {
+  type: typeof UPDATE_FETCHED_USERS;
+  users: User[];
+}
+
+interface StoreCurrentUserAction {
+  type: typeof STORE_CURRENT_USER,
+  currentUser: User
+}
+
+export type UserActionTypes = FetchUsersAction | UpdateFetchedUsersAction | StoreCurrentUserAction; // used for typing at reducers

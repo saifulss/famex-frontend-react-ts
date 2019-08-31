@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {Component} from 'react';
 import {connect} from "react-redux";
-import {fetchUsers, mockAsyncCall} from "../store/user/actions";
+import {fetchUsers} from "../store/user/actions";
 import {User} from "../store/user/types";
 
 interface ExpenseClaimsViewProps {
-  fetchUsers: typeof fetchUsers;
+  fetchUsers: any;
   users: User[];
 }
 
@@ -13,10 +13,8 @@ interface ExpenseClaimsState {}
 
 class BaseExpenseClaimsView extends Component<ExpenseClaimsViewProps, ExpenseClaimsState> {
   componentDidMount(): void {
-    mockAsyncCall().then(result => {
-      console.log(result);
-      this.props.fetchUsers(result);
-    });
+    // console.log(this.props);
+    // this.props.fetchUsers();
   }
 
   render() {
@@ -33,10 +31,6 @@ class BaseExpenseClaimsView extends Component<ExpenseClaimsViewProps, ExpenseCla
 const mapStateToProps = (state: any) => ({
   users: state.user.users
 });
-
-// const mapDispatchToProps = (dispatch: any) => {
-//
-// };
 
 const mapDispatchToProps = {fetchUsers};
 
