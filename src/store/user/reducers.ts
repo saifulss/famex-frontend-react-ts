@@ -1,4 +1,4 @@
-import {STORE_CURRENT_USER, UPDATE_FETCHED_USERS, UserActionTypes, UserState} from "./types";
+import {UPDATE_FETCHED_USERS, UserActionTypes, UserState} from "./types";
 
 const initialState: UserState = {
   currentUser: undefined,
@@ -10,13 +10,6 @@ export const userReducer = (state = initialState, action: UserActionTypes): User
     return {
       ...state,
       users: action.users
-    }
-  }
-
-  if (action.type === STORE_CURRENT_USER) {
-    return {
-      ...state,
-      currentUser: action.currentUser
     }
   }
 

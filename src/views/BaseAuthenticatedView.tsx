@@ -1,15 +1,15 @@
 import * as React from 'react';
 import {connect} from "react-redux";
-import {authenticate} from "../store/token/actions";
+import {attemptAuthentication} from "../store/auth/actions";
 
 interface BaseAuthenticatedViewProps {
   component: React.ReactElement;
-  authenticate: any;
+  attemptAuthentication: any;
 }
 
 class BaseAuthenticatedView extends React.Component<BaseAuthenticatedViewProps> {
   componentDidMount(): void {
-    this.props.authenticate("saifulss85@gmail.com", "secret");
+    this.props.attemptAuthentication("saifulss85@gmail.com", "secret");
   }
 
   render() {
@@ -21,6 +21,6 @@ class BaseAuthenticatedView extends React.Component<BaseAuthenticatedViewProps> 
   }
 }
 
-const mapDispatchToProps = {authenticate};
+const mapDispatchToProps = {attemptAuthentication};
 
 export const AuthenticatedView = connect(null, mapDispatchToProps)(BaseAuthenticatedView);

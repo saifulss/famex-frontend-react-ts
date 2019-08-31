@@ -1,10 +1,10 @@
 import {combineReducers} from "redux";
 import {userReducer} from "./user/reducers";
-import {tokenReducer} from "./token/reducers";
+import {authReducer} from "./auth/reducers";
 
 export const rootReducer = combineReducers({
   user: userReducer,
-  token: tokenReducer,
+  token: authReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>

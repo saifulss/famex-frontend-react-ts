@@ -10,7 +10,6 @@ export interface UserState {
 
 export const FETCH_USERS = "FETCH_USERS";
 export const UPDATE_FETCHED_USERS = "UPDATE_FETCHED_USERS";
-export const STORE_CURRENT_USER = "STORE_CURRENT_USER";
 
 export interface FetchUsersAction {
   type: typeof FETCH_USERS;
@@ -21,9 +20,4 @@ interface UpdateFetchedUsersAction {
   users: User[];
 }
 
-interface StoreCurrentUserAction {
-  type: typeof STORE_CURRENT_USER,
-  currentUser: User
-}
-
-export type UserActionTypes = FetchUsersAction | UpdateFetchedUsersAction | StoreCurrentUserAction; // used for typing at reducers
+export type UserActionTypes = FetchUsersAction | UpdateFetchedUsersAction; // used for typing at reducers
