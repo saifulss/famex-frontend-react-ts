@@ -1,32 +1,34 @@
 import * as React from 'react';
-import {Component} from 'react';
 import {connect} from "react-redux";
-import {fetchUsers} from "../store/user/actions";
-import {User} from "../store/user/types";
+import {ExpenseClaim} from "../components/ExpenseClaim/ExpenseClaim";
+import {ExpenseClaim as ExpenseClaimModel} from "../store/expenseClaim/types";
+import {AppState} from "../store/rootReducer";
+import {fetchExpenseClaims} from "../store/expenseClaim/actions";
 
 interface ExpenseClaimsViewProps {
-  fetchUsers: any;
-  users: User[];
+  expenseClaims: ExpenseClaimModel[];
+  fetchExpenseClaims: () => void;
 }
 
-interface ExpenseClaimsState {}
+class BaseExpenseClaimsView extends React.Component<ExpenseClaimsViewProps> {
+  componentDidMount(): void {
+    this.props.fetchExpenseClaims();
+  }
 
-class BaseExpenseClaimsView extends Component<ExpenseClaimsViewProps, ExpenseClaimsState> {
   render() {
-    if (!this.props.users) return null;
-
     return (
       <div>
-        {this.props.users.map(user => <div key={user.email}>{user.displayName}'s email is: {user.email}</div>)}
+        {this.props.expenseClaims.map(expenseClaim => <ExpenseClaim expenseClaim={expenseClaim}
+                                                                    key={expenseClaim.id}/>)}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state: any) => ({
-  users: state.user.users
+const mapStateToProps = (state: AppState) => ({
+  expenseClaims: state.expenseClaim.expenseClaims
 });
 
-const mapDispatchToProps = {fetchUsers};
+const mapDispatchToProps = {fetchExpenseClaims};
 
 export const ExpenseClaimsView = connect(mapStateToProps, mapDispatchToProps)(BaseExpenseClaimsView);
