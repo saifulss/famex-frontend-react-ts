@@ -7,7 +7,7 @@ interface BaseAuthenticatedViewProps {
   attemptAuthentication: (username: string, password: string) => void;  // todo: extract to its own interface
 }
 
-class BaseAuthenticatedView extends React.Component<BaseAuthenticatedViewProps> {
+class BaseAuthenticatedBaseView extends React.Component<BaseAuthenticatedViewProps> {
   componentDidMount(): void {
     this.props.attemptAuthentication("saifulss85@gmail.com", "secret");
   }
@@ -23,4 +23,4 @@ class BaseAuthenticatedView extends React.Component<BaseAuthenticatedViewProps> 
 
 const mapDispatchToProps = {attemptAuthentication};
 
-export const AuthenticatedView = connect(null, mapDispatchToProps)(BaseAuthenticatedView);
+export const AuthenticatedBaseView = connect(null, mapDispatchToProps)(BaseAuthenticatedBaseView);

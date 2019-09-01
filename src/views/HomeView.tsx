@@ -1,19 +1,34 @@
 import * as React from 'react';
 import {Link} from "react-router-dom";
+import {User} from "../store/user/types";
+import {connect} from "react-redux";
+import {AppState} from "../store/rootReducer";
 
-export const HomeView = () => (
-  <div>
-    HomeView
+interface HomeViewProps {
+  currentUser?: User;
+}
 
-    <div style={{
-      display: "flex",
-      justifyContent: "space-between",
-      width: "800px"
-    }}>
-      <Link to="/">Home</Link>
-      <Link to="/expense-claims">Claims</Link>
-      <Link to="/expense-claims/1">Claim details</Link>
-      <Link to="/expense-claims/create">Create claim</Link>
+const BaseHomeView: React.FC<HomeViewProps> = (props) => {
+  return (
+    <div>
+      <p>Welcome to Famex - the family expenditure tracking app!</p>
+
+      {props.currentUser === undefined && (
+        <p>To begin, click <Link to="/login">here</Link> to sign in.</p>
+      )}
+
+      {props.currentUser && (
+        <p>Welcome, {props.currentUser.displayName}!
+          Click <Link to="/expense-claims">here</Link> to see expense claims.
+        </p>
+      )}
+
     </div>
-  </div>
-);
+  );
+};
+
+const mapStateToProps = (state: AppState) => ({
+  currentUser: state.auth.currentUser
+});
+
+export const HomeView = connect(mapStateToProps)(BaseHomeView);

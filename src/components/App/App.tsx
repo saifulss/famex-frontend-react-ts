@@ -9,7 +9,8 @@ import {CreateExpenseClaimView} from "../../views/CreateExpenseClaimView";
 import {Error404View} from "../../views/Error404View"
 import {Provider} from "react-redux";
 import {store} from "../../store/store";
-import {AuthenticatedView} from "../../views/BaseAuthenticatedView";
+import {AuthenticatedBaseView} from "../../views/AuthenticatedBaseView";
+import {LoginView} from "../../views/LoginView";
 
 const history = createBrowserHistory();
 
@@ -18,7 +19,8 @@ export const App: React.FC = () => (
     <Provider store={store}>
       <Switch>
         <Route exact path="/" render={() => <HomeView/>}/>
-        <Route exact path="/expense-claims" render={() => <AuthenticatedView component={<ExpenseClaimsView/>}/>}/>
+        <Route path="/login" component={LoginView}/>
+        <Route exact path="/expense-claims" render={() => <AuthenticatedBaseView component={<ExpenseClaimsView/>}/>}/>
         <Route path="/expense-claims/:id"
                render={(props: ViewExpenseClaimViewProps) => <ViewExpenseClaimView {...props}/>}/>
         <Route exact path="/expense-claims/create" render={() => <CreateExpenseClaimView/>}/>
