@@ -5,8 +5,8 @@ import {STORE_ACCESS_TOKEN, STORE_CURRENT_USER, StoreAccessTokenAction, StoreCur
 import {Dispatch} from "redux";
 
 // thunk
-export const attemptAuthentication = (username: string, password: string): any => {
-  return (dispatch: Dispatch): any => {
+export const attemptAuthentication = (username: string, password: string) => {
+  return (dispatch: Dispatch): void => {
     axios.post(`${ApiConstants.BASE_URL}/authenticate`, null, {
       params: {
         username,
