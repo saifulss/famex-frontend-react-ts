@@ -4,7 +4,7 @@ import {attemptAuthentication} from "../store/auth/actions";
 
 interface BaseAuthenticatedViewProps {
   component: React.ReactElement;
-  attemptAuthentication: any;
+  attemptAuthentication: typeof attemptAuthentication;
 }
 
 class BaseAuthenticatedView extends React.Component<BaseAuthenticatedViewProps> {

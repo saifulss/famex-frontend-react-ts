@@ -1,11 +1,12 @@
 import axios from "axios";
 import {ApiConstants} from "../../constants/ApiConstants";
 import {User} from "../user/types";
-import {STORE_ACCESS_TOKEN, STORE_CURRENT_USER, StoreAccessTokenAction} from "./types";
+import {STORE_ACCESS_TOKEN, STORE_CURRENT_USER, StoreAccessTokenAction, StoreCurrentUserAction} from "./types";
+import {Dispatch} from "redux";
 
 // thunk
-export const attemptAuthentication = (username: string, password: string) => {
-  return (dispatch: any) => {
+export const attemptAuthentication = (username: string, password: string): any => {
+  return (dispatch: Dispatch): any => {
     axios.post(`${ApiConstants.BASE_URL}/authenticate`, null, {
       params: {
         username,
@@ -20,7 +21,7 @@ export const attemptAuthentication = (username: string, password: string) => {
   };
 };
 
-export function storeCurrentUser(currentUser: User) {
+export function storeCurrentUser(currentUser: User): StoreCurrentUserAction {
   return {
     type: STORE_CURRENT_USER,
     currentUser
