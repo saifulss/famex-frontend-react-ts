@@ -8,18 +8,17 @@ import {AppState} from "../rootReducer";
 
 // thunk
 export const attemptAuthentication = (username: string, password: string): ThunkAction<void, any, any, AnyAction> => {
-  return (dispatch: ThunkDispatch<AppState, any, AnyAction>) => {
-    axios.post(`${ApiConstants.BASE_URL}/authenticate`, null, {
+  return async (dispatch: ThunkDispatch<AppState, any, AnyAction>) => {
+    const response = await axios.post(`${ApiConstants.BASE_URL}/authenticate`, null, {
       params: {
         username,
         password
       } // todo: make backend API accept it in POST body instead of request params
-    }).then((results) => {
-      const {user, token} = results.data;
-      console.log(user);
-      dispatch(storeCurrentUser(user));
-      dispatch(storeToken(token))
     });
+
+    const {user, token} = response.data;
+    dispatch(storeCurrentUser(user));
+    dispatch(storeToken(token))
   };
 };
 

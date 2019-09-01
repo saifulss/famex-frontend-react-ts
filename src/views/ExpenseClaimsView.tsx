@@ -12,11 +12,6 @@ interface ExpenseClaimsViewProps {
 interface ExpenseClaimsState {}
 
 class BaseExpenseClaimsView extends Component<ExpenseClaimsViewProps, ExpenseClaimsState> {
-  componentDidMount(): void {
-    // console.log(this.props);
-    // this.props.fetchUsers();
-  }
-
   render() {
     if (!this.props.users) return null;
 
