@@ -3,9 +3,7 @@ import './App.css';
 import {Route, Router, Switch} from "react-router";
 import {ExpenseClaimsView} from "../../views/ExpenseClaimsView";
 import {createBrowserHistory} from 'history';
-import {ViewExpenseClaimView, ViewExpenseClaimViewProps} from "../../views/ViewExpenseClaimView";
 import {HomeView} from "../../views/HomeView";
-import {CreateExpenseClaimView} from "../../views/CreateExpenseClaimView";
 import {Error404View} from "../../views/Error404View"
 import {Provider} from "react-redux";
 import {store} from "../../store/store";
@@ -21,9 +19,6 @@ export const App: React.FC = () => (
         <Route exact path="/" render={() => <HomeView/>}/>
         <Route path="/login" component={LoginView}/>
         <Route exact path="/expense-claims" render={() => <AuthenticatedBaseView component={<ExpenseClaimsView/>}/>}/>
-        <Route path="/expense-claims/:id"
-               render={(props: ViewExpenseClaimViewProps) => <ViewExpenseClaimView {...props}/>}/>
-        <Route exact path="/expense-claims/create" render={() => <CreateExpenseClaimView/>}/>
         <Route path="*" render={() => <Error404View/>}/>
       </Switch>
     </Provider>

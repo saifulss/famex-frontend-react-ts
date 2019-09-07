@@ -31,4 +31,5 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = {fetchExpenseClaims};
 
+// todo: prop the connect<>() call
 export const ExpenseClaimsView = connect(mapStateToProps, mapDispatchToProps)(BaseExpenseClaimsView);
