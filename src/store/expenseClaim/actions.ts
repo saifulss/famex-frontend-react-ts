@@ -17,6 +17,27 @@ export function fetchExpenseClaims(): any {   // todo: figure out how to properl
   }
 }
 
+// thunk
+export function submitExpenseClaim(): any {
+  console.log("Sending submission...");
+
+  return async (dispatch: Dispatch, getState: () => AppState) => {
+    const {amount, category: name} = getState().expenseClaimForm;
+
+    await axios.post(`${ApiConstants.BASE_URL}/expense-claims`, {
+        amount,
+        name,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${getState().auth.accessToken}`
+        }
+      });
+
+    dispatch(fetchExpenseClaims());
+  }
+}
+
 function storeExpenseClaims(expenseClaims: ExpenseClaim[]): StoreExpenseClaimsAction {
   return {
     type: STORE_EXPENSE_CLAIMS,

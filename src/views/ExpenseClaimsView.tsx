@@ -5,6 +5,7 @@ import {ExpenseClaim} from "../components/ExpenseClaim/ExpenseClaim";
 import {ExpenseClaim as ExpenseClaimModel} from "../store/expenseClaim/types";
 import {AppState} from "../store/rootReducer";
 import {fetchExpenseClaims} from "../store/expenseClaim/actions";
+import {CreateExpenseClaimForm} from "../components/CreateExpenseClaimForm/CreateExpenseClaimForm";
 
 interface ExpenseClaimsViewProps {
   expenseClaims: ExpenseClaimModel[];
@@ -25,6 +26,7 @@ class BaseExpenseClaimsView extends React.Component<ExpenseClaimsViewProps> {
     return (
       <div>
         {this.renderExpenseClaimsList()}
+        <CreateExpenseClaimForm/>
       </div>
     );
   }
