@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {ReactElement} from 'react';
 import {connect} from "react-redux";
 import {ExpenseClaim} from "../components/ExpenseClaim/ExpenseClaim";
 import {ExpenseClaim as ExpenseClaimModel} from "../store/expenseClaim/types";
@@ -15,11 +16,15 @@ class BaseExpenseClaimsView extends React.Component<ExpenseClaimsViewProps> {
     this.props.fetchExpenseClaims();
   }
 
+  renderExpenseClaimsList(): ReactElement[] {
+    return this.props.expenseClaims.map(expenseClaim => <ExpenseClaim expenseClaim={expenseClaim}
+                                                                      key={expenseClaim.id}/>);
+  }
+
   render() {
     return (
       <div>
-        {this.props.expenseClaims.map(expenseClaim => <ExpenseClaim expenseClaim={expenseClaim}
-                                                                    key={expenseClaim.id}/>)}
+        {this.renderExpenseClaimsList()}
       </div>
     );
   }
