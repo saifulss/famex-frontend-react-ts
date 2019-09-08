@@ -9,11 +9,14 @@ import { Provider } from "react-redux";
 import { store } from "../../store/store";
 import { AuthenticatedBaseView } from "../../views/AuthenticatedBaseView";
 import { LoginView } from "../../views/LoginView";
+import { SignIn } from "../../views/Login";
+import { CssBaseline } from "@material-ui/core";
 
 const history = createBrowserHistory();
 
 export const App: React.FC = () => (
   <Router history={history}>
+    <CssBaseline />
     <Provider store={store}>
       <Switch>
         <Route exact path="/" render={() => <HomeView />} />
@@ -25,6 +28,7 @@ export const App: React.FC = () => (
             <AuthenticatedBaseView component={<ExpenseClaimsView />} />
           )}
         />
+        <Route path="/test" render={() => <SignIn />} />
         <Route path="*" render={() => <Error404View />} />
       </Switch>
     </Provider>

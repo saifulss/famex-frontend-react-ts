@@ -4,6 +4,8 @@ import { attemptAuthentication } from "../store/auth/actions";
 import { AppState } from "../store/rootReducer";
 import { User } from "../store/user/types";
 import { Redirect } from "react-router";
+import { Container } from "@material-ui/core";
+import { FamexAppBar } from "../components/FamexAppBar/FamexAppBar";
 
 interface BaseAuthenticatedViewProps {
   component: React.ReactElement;
@@ -12,9 +14,14 @@ interface BaseAuthenticatedViewProps {
 }
 
 const BaseAuthenticatedBaseView = (props: BaseAuthenticatedViewProps) => {
-  if (props.currentUser === undefined) return <Redirect to="/login"/>;
+  if (props.currentUser === undefined) return <Redirect to="/login" />;
 
-  return <div>{props.component}</div>;
+  return (
+    <Container maxWidth="xs">
+      <FamexAppBar />
+      <div>{props.component}</div>
+    </Container>
+  );
 };
 
 const mapStateToProps = (state: AppState) => ({
