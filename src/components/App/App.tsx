@@ -3,7 +3,7 @@ import './App.css';
 import {Route, Router, Switch} from "react-router";
 import {ExpenseClaimsView} from "../../views/ExpenseClaimsView";
 import {createBrowserHistory} from 'history';
-import {HomeView} from "../../views/HomeView";
+import {HomeView} from "../../views/HomeView/HomeView";
 import {Error404View} from "../../views/Error404View"
 import {Provider} from "react-redux";
 import {store} from "../../store/store";

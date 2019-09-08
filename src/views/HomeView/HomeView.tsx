@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {Link} from "react-router-dom";
-import {User} from "../store/user/types";
+import {User} from "../../store/user/types";
 import {connect} from "react-redux";
-import {AppState} from "../store/rootReducer";
+import {AppState} from "../../store/rootReducer";
 
 interface HomeViewProps {
   currentUser?: User;
