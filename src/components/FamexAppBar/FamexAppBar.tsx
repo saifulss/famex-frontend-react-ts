@@ -177,7 +177,7 @@ export const FamexAppBar = () => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            Famex
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
