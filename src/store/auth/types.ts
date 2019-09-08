@@ -1,5 +1,5 @@
-import {User} from "../user/types";
-import {Action} from "redux";
+import { User } from "../user/types";
+import { Action } from "redux";
 
 // types of actions you want to support, for this domain
 export const ATTEMPT_AUTHENTICATION = "ATTEMPT_AUTHENTICATION";
@@ -21,7 +21,10 @@ export interface StoreAccessTokenAction extends Action<string> {
   accessToken: string;
 }
 
-export type AuthActionTypes = AttemptAuthenticationAction | StoreCurrentUserAction | StoreAccessTokenAction;
+export type AuthActionTypes =
+  | AttemptAuthenticationAction
+  | StoreCurrentUserAction
+  | StoreAccessTokenAction;
 
 // the slice of state that you want, for this domain
 export interface AuthState {

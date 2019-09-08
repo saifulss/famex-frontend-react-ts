@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {Component} from 'react';
+import * as React from "react";
+import { Component } from "react";
 
 interface Error404ViewProps {
   // prop1: number;
@@ -10,7 +10,8 @@ interface Error404ViewState {
   // stateItem1: boolean;
 }
 
-export class Error404View extends Component<Error404ViewProps, Error404ViewState> {
+export class Error404View extends Component<Error404ViewProps,
+  Error404ViewState> {
   // constructor(props: Error404ViewProps) {
   //   super(props);
   //   this.state = {
@@ -19,10 +20,6 @@ export class Error404View extends Component<Error404ViewProps, Error404ViewState
   // }
 
   render() {
-    return (
-      <div>
-        Error404View
-      </div>
-    );
+    return <div>Error404View</div>;
   }
 }

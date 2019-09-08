@@ -1,13 +1,15 @@
-import * as React from 'react';
-import {ChangeEvent, Component, Dispatch, FormEvent} from 'react';
-import {connect} from "react-redux";
-import {updateExpenseClaimForm} from "../../store/expenseClaimForm/actions";
-import {ExpenseClaimFormModel} from "../../store/expenseClaimForm/types";
-import {submitExpenseClaim} from "../../store/expenseClaim/actions";
+import * as React from "react";
+import { ChangeEvent, Component, Dispatch, FormEvent } from "react";
+import { connect } from "react-redux";
+import { updateExpenseClaimForm } from "../../store/expenseClaimForm/actions";
+import { ExpenseClaimFormModel } from "../../store/expenseClaimForm/types";
+import { submitExpenseClaim } from "../../store/expenseClaim/actions";
 
 interface CreateExpenseClaimFormProps {
   initialFormValue?: ExpenseClaimFormModel;
-  updateExpenseClaimForm: (expenseClaimFormModel: ExpenseClaimFormModel) => void;
+  updateExpenseClaimForm: (
+    expenseClaimFormModel: ExpenseClaimFormModel
+  ) => void;
   submitExpenseClaim: () => void;
 }
 
@@ -18,7 +20,8 @@ interface CreateExpenseClaimFormState {
   description: string;
 }
 
-class BaseCreateExpenseClaimForm extends Component<CreateExpenseClaimFormProps, CreateExpenseClaimFormState> {
+class BaseCreateExpenseClaimForm extends Component<CreateExpenseClaimFormProps,
+  CreateExpenseClaimFormState> {
   constructor(props: CreateExpenseClaimFormProps) {
     super(props);
 
@@ -28,14 +31,14 @@ class BaseCreateExpenseClaimForm extends Component<CreateExpenseClaimFormProps, 
         currency: "SGD",
         amount: 0,
         category: "",
-        description: "",
+        description: ""
       };
     } else {
       this.state = {
         currency: this.props.initialFormValue.currency,
         amount: this.props.initialFormValue.amount,
         category: this.props.initialFormValue.category,
-        description: this.props.initialFormValue.description,
+        description: this.props.initialFormValue.description
       };
     }
   }
@@ -45,23 +48,31 @@ class BaseCreateExpenseClaimForm extends Component<CreateExpenseClaimFormProps, 
       currency: this.state.currency,
       amount: this.state.amount,
       category: this.state.category,
-      description: this.state.description,
+      description: this.state.description
     });
   };
 
   onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     switch (event.target.name) {
       case "currency":
-        this.setState({currency: event.target.value}, () => this.updateStore());
+        this.setState({ currency: event.target.value }, () =>
+          this.updateStore()
+        );
         break;
       case "amount":
-        this.setState({amount: Number.parseInt(event.target.value)}, () => this.updateStore());
+        this.setState({ amount: Number.parseInt(event.target.value) }, () =>
+          this.updateStore()
+        );
         break;
       case "category":
-        this.setState({category: event.target.value}, () => this.updateStore());
+        this.setState({ category: event.target.value }, () =>
+          this.updateStore()
+        );
         break;
       case "description":
-        this.setState({description: event.target.value}, () => this.updateStore());
+        this.setState({ description: event.target.value }, () =>
+          this.updateStore()
+        );
         break;
       default:
         throw new Error("Unknown form input type");
@@ -76,14 +87,36 @@ class BaseCreateExpenseClaimForm extends Component<CreateExpenseClaimFormProps, 
 
   render() {
     return (
-      <form style={{
-        border: "solid #cccccc 1px"
-      }} onSubmit={this.onSubmit}>
-        <input name="currency" placeholder="Currency" value={this.state.currency} onChange={this.onInputChange}/>
-        <input name="amount" placeholder="Amount" onChange={this.onInputChange}/>
-        <input name="category" placeholder="Category" onChange={this.onInputChange}/>
-        <input name="description" placeholder="Description" onChange={this.onInputChange}/>
-        <button onSubmit={this.onSubmit} onClick={this.onSubmit}>Create</button>
+      <form
+        style={{
+          border: "solid #cccccc 1px"
+        }}
+        onSubmit={this.onSubmit}
+      >
+        <input
+          name="currency"
+          placeholder="Currency"
+          value={this.state.currency}
+          onChange={this.onInputChange}
+        />
+        <input
+          name="amount"
+          placeholder="Amount"
+          onChange={this.onInputChange}
+        />
+        <input
+          name="category"
+          placeholder="Category"
+          onChange={this.onInputChange}
+        />
+        <input
+          name="description"
+          placeholder="Description"
+          onChange={this.onInputChange}
+        />
+        <button onSubmit={this.onSubmit} onClick={this.onSubmit}>
+          Create
+        </button>
       </form>
     );
   }
@@ -95,9 +128,13 @@ class BaseCreateExpenseClaimForm extends Component<CreateExpenseClaimFormProps, 
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => {
   return {
-    updateExpenseClaimForm: (expenseClaimFormModel: ExpenseClaimFormModel) => dispatch(updateExpenseClaimForm(expenseClaimFormModel)),
-    submitExpenseClaim: () => dispatch(submitExpenseClaim()),
+    updateExpenseClaimForm: (expenseClaimFormModel: ExpenseClaimFormModel) =>
+      dispatch(updateExpenseClaimForm(expenseClaimFormModel)),
+    submitExpenseClaim: () => dispatch(submitExpenseClaim())
   };
 };
 
-export const CreateExpenseClaimForm = connect(null, mapDispatchToProps)(BaseCreateExpenseClaimForm);
+export const CreateExpenseClaimForm = connect(
+  null,
+  mapDispatchToProps
+)(BaseCreateExpenseClaimForm);

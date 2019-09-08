@@ -1,11 +1,11 @@
-import * as React from 'react';
-import {ReactElement} from 'react';
-import {connect} from "react-redux";
-import {ExpenseClaim} from "../components/ExpenseClaim/ExpenseClaim";
-import {ExpenseClaim as ExpenseClaimModel} from "../store/expenseClaim/types";
-import {AppState} from "../store/rootReducer";
-import {fetchExpenseClaims} from "../store/expenseClaim/actions";
-import {CreateExpenseClaimForm} from "../components/CreateExpenseClaimForm/CreateExpenseClaimForm";
+import * as React from "react";
+import { ReactElement } from "react";
+import { connect } from "react-redux";
+import { ExpenseClaim } from "../components/ExpenseClaim/ExpenseClaim";
+import { ExpenseClaim as ExpenseClaimModel } from "../store/expenseClaim/types";
+import { AppState } from "../store/rootReducer";
+import { fetchExpenseClaims } from "../store/expenseClaim/actions";
+import { CreateExpenseClaimForm } from "../components/CreateExpenseClaimForm/CreateExpenseClaimForm";
 
 interface ExpenseClaimsViewProps {
   expenseClaims: ExpenseClaimModel[];
@@ -18,8 +18,9 @@ class BaseExpenseClaimsView extends React.Component<ExpenseClaimsViewProps> {
   }
 
   renderExpenseClaimsList(): ReactElement[] {
-    return this.props.expenseClaims.map(expenseClaim => <ExpenseClaim expenseClaim={expenseClaim}
-                                                                      key={expenseClaim.id}/>);
+    return this.props.expenseClaims.map(expenseClaim => (
+      <ExpenseClaim expenseClaim={expenseClaim} key={expenseClaim.id}/>
+    ));
   }
 
   render() {
@@ -36,7 +37,10 @@ const mapStateToProps = (state: AppState) => ({
   expenseClaims: state.expenseClaim.expenseClaims
 });
 
-const mapDispatchToProps = {fetchExpenseClaims};
+const mapDispatchToProps = { fetchExpenseClaims };
 
 // todo: prop the connect<>() call
-export const ExpenseClaimsView = connect(mapStateToProps, mapDispatchToProps)(BaseExpenseClaimsView);
+export const ExpenseClaimsView = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BaseExpenseClaimsView);

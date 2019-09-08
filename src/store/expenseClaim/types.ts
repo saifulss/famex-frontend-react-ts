@@ -1,4 +1,4 @@
-import {User} from "../user/types";
+import { User } from "../user/types";
 
 export interface ExpenseClaim {
   id: number;
@@ -28,11 +28,14 @@ export interface StoreExpenseClaimsAction {
 export interface UpdateExpenseClaimAction {
   type: typeof UPDATE_EXPENSE_CLAIM;
   payload: {
-    expenseClaim: ExpenseClaim
-  }
+    expenseClaim: ExpenseClaim;
+  };
 }
 
-export type ExpenseClaimActionTypes = FetchExpenseClaimsAction | StoreExpenseClaimsAction | UpdateExpenseClaimAction;
+export type ExpenseClaimActionTypes =
+  | FetchExpenseClaimsAction
+  | StoreExpenseClaimsAction
+  | UpdateExpenseClaimAction;
 
 // the slice of state that you want, for this domain
 export interface ExpenseClaimState {

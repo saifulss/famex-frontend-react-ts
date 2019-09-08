@@ -1,10 +1,10 @@
-import * as React from 'react';
-import {ChangeEvent, Component} from 'react';
-import {connect} from "react-redux";
-import {attemptAuthentication} from "../store/auth/actions";
-import {AppState} from "../store/rootReducer";
-import {User} from "../store/user/types";
-import {Redirect} from "react-router";
+import * as React from "react";
+import { ChangeEvent, Component } from "react";
+import { connect } from "react-redux";
+import { attemptAuthentication } from "../store/auth/actions";
+import { AppState } from "../store/rootReducer";
+import { User } from "../store/user/types";
+import { Redirect } from "react-router";
 
 interface LoginViewProps {
   currentUser: User;
@@ -13,8 +13,8 @@ interface LoginViewProps {
 }
 
 interface LoginViewState {
-  username: string,
-  password: string
+  username: string;
+  password: string;
 }
 
 class BaseLoginView extends Component<LoginViewProps, LoginViewState> {
@@ -24,14 +24,14 @@ class BaseLoginView extends Component<LoginViewProps, LoginViewState> {
   };
 
   onUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const {value: username} = event.target;
+    const { value: username } = event.target;
     this.setState({
       username
     });
   };
 
   onPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const {value: password} = event.target;
+    const { value: password } = event.target;
     this.setState({
       password
     });
@@ -43,7 +43,10 @@ class BaseLoginView extends Component<LoginViewProps, LoginViewState> {
   };
 
   hasLoggedIn = () => {
-    return this.props.currentUser !== undefined && this.props.accessToken !== undefined
+    return (
+      this.props.currentUser !== undefined &&
+      this.props.accessToken !== undefined
+    );
   };
 
   render() {
@@ -56,9 +59,19 @@ class BaseLoginView extends Component<LoginViewProps, LoginViewState> {
           display: "flex",
           flexDirection: "column",
           width: "400px"
-        }}>
-        <input value={this.state.username} onChange={this.onUsernameChange} placeholder="Email"/>
-        <input type="password" value={this.state.password} onChange={this.onPasswordChange} placeholder="Password"/>
+        }}
+      >
+        <input
+          value={this.state.username}
+          onChange={this.onUsernameChange}
+          placeholder="Email"
+        />
+        <input
+          type="password"
+          value={this.state.password}
+          onChange={this.onPasswordChange}
+          placeholder="Password"
+        />
         <input type="submit" value="Sign in"/>
       </form>
     );
@@ -70,6 +83,9 @@ const mapStateToProps = (state: AppState): any => ({
   accessToken: state.auth.accessToken
 });
 
-const mapDispatchToProps = {attemptAuthentication};
+const mapDispatchToProps = { attemptAuthentication };
 
-export const LoginView = connect(mapStateToProps, mapDispatchToProps)(BaseLoginView);
+export const LoginView = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BaseLoginView);

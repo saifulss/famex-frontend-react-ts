@@ -11,7 +11,7 @@ export interface ExpenseClaimFormModel {
 // all the interfaces describing the shapes of actions you want to support, for this domain
 export interface UpdateExpenseClaimForm {
   type: typeof UPDATE_EXPENSE_CLAIM_FORM;
-  payload: ExpenseClaimFormModel
+  payload: ExpenseClaimFormModel;
 }
 
 export type ExpenseClaimFormActionTypes = UpdateExpenseClaimForm;

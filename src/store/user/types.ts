@@ -1,6 +1,6 @@
 export interface User {
-  displayName: string,
-  email: string
+  displayName: string;
+  email: string;
 }
 
 export interface UserState {
