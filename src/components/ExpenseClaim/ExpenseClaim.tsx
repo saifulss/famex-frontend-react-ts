@@ -1,38 +1,33 @@
 import * as React from "react";
 import { ExpenseClaim as ExpenseClaimModel } from "../../store/expenseClaim/types";
-import { connect } from "react-redux";
-import { updateExpenseClaim } from "../../store/expenseClaim/actions";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import FolderIcon from "@material-ui/icons/Folder";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import IconButton from "@material-ui/core/IconButton";
+import ListItem from "@material-ui/core/ListItem";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 interface ExpenseClaimProps {
   expenseClaim: ExpenseClaimModel;
-  updateExpenseClaim: (expenseClaim: ExpenseClaimModel) => void;
 }
 
-const BaseExpenseClaim = (props: ExpenseClaimProps) => {
-  const onSave = () => {
-    props.updateExpenseClaim(props.expenseClaim);
-  };
-
-  return (
-    <div>
-      <div>
-        {props.expenseClaim.amount} for {props.expenseClaim.name}
-      </div>
-      <div>
-        {props.expenseClaim.payer.displayName} at {props.expenseClaim.createdAt}
-      </div>
-      <button onClick={onSave}>Save</button>
-    </div>
-  );
-};
-
-const mapStateToProps = (state: any) => ({
-  counter: state.counter
-});
-
-const mapDispatchToProps = { updateExpenseClaim };
-
-export const ExpenseClaim = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BaseExpenseClaim);
+export const ExpenseClaim = (props: ExpenseClaimProps) => (
+  <ListItem>
+    <ListItemAvatar>
+      <Avatar>
+        <FolderIcon />
+      </Avatar>
+    </ListItemAvatar>
+    <ListItemText
+      primary={props.expenseClaim.amount}
+      secondary={props.expenseClaim.name}
+    />
+    <ListItemSecondaryAction>
+      <IconButton edge="end" aria-label="delete">
+        <DeleteIcon />
+      </IconButton>
+    </ListItemSecondaryAction>
+  </ListItem>
+);
