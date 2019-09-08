@@ -50,7 +50,7 @@ class BaseLoginView extends Component<LoginViewProps, LoginViewState> {
   };
 
   render() {
-    if (this.hasLoggedIn()) return <Redirect to="/"/>;
+    if (this.hasLoggedIn()) return <Redirect to="/" />;
 
     return (
       <form
@@ -72,7 +72,7 @@ class BaseLoginView extends Component<LoginViewProps, LoginViewState> {
           onChange={this.onPasswordChange}
           placeholder="Password"
         />
-        <input type="submit" value="Sign in"/>
+        <input type="submit" value="Sign in" />
       </form>
     );
   }

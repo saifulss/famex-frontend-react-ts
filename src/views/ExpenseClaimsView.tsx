@@ -19,7 +19,7 @@ class BaseExpenseClaimsView extends React.Component<ExpenseClaimsViewProps> {
 
   renderExpenseClaimsList(): ReactElement[] {
     return this.props.expenseClaims.map(expenseClaim => (
-      <ExpenseClaim expenseClaim={expenseClaim} key={expenseClaim.id}/>
+      <ExpenseClaim expenseClaim={expenseClaim} key={expenseClaim.id} />
     ));
   }
 
@@ -27,7 +27,7 @@ class BaseExpenseClaimsView extends React.Component<ExpenseClaimsViewProps> {
     return (
       <div>
         {this.renderExpenseClaimsList()}
-        <CreateExpenseClaimForm/>
+        <CreateExpenseClaimForm />
       </div>
     );
   }

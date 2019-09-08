@@ -16,16 +16,16 @@ export const App: React.FC = () => (
   <Router history={history}>
     <Provider store={store}>
       <Switch>
-        <Route exact path="/" render={() => <HomeView/>}/>
-        <Route path="/login" component={LoginView}/>
+        <Route exact path="/" render={() => <HomeView />} />
+        <Route path="/login" component={LoginView} />
         <Route
           exact
           path="/expense-claims"
           render={() => (
-            <AuthenticatedBaseView component={<ExpenseClaimsView/>}/>
+            <AuthenticatedBaseView component={<ExpenseClaimsView />} />
           )}
         />
-        <Route path="*" render={() => <Error404View/>}/>
+        <Route path="*" render={() => <Error404View />} />
       </Switch>
     </Provider>
   </Router>
