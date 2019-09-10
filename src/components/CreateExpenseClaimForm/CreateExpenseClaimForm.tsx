@@ -16,7 +16,13 @@ interface CreateExpenseClaimFormProps {
 
 const BaseCreateExpenseClaimForm = (props: CreateExpenseClaimFormProps) => {
   const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (!Object.keys(props.expenseClaimForm).includes(event.target.name))
+    const acceptedInputNames = [
+      "currency",
+      "amount",
+      "category",
+      "description"
+    ];
+    if (!acceptedInputNames.includes(event.target.name))
       throw new Error("Unknown form input name");
 
     props.updateExpenseClaimForm({
