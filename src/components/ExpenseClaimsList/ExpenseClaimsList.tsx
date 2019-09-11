@@ -7,10 +7,11 @@ import { ExpenseClaim } from "../ExpenseClaim/ExpenseClaim";
 
 interface ExpenseClaimsListProps {
   expenseClaims: ExpenseClaimModel[];
+  style?: object;
 }
 
 const BaseExpenseClaimsList = (props: ExpenseClaimsListProps) => (
-  <List dense={false}>
+  <List dense={false} style={{ ...props.style }}>
     {props.expenseClaims.map(ec => (
       <ExpenseClaim expenseClaim={ec} key={ec.id} />
     ))}

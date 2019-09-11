@@ -18,8 +18,11 @@ class BaseExpenseClaimsView extends React.Component<ExpenseClaimsViewProps> {
 
   render() {
     return (
-      <div className="ExpenseClaimsView">
-        <ExpenseClaimsList />
+      <div
+        className="ExpenseClaimsView"
+        style={{ display: "flex", flexDirection: "column", height: "90vh" }}
+      >
+        <ExpenseClaimsList style={{ overflow: "auto" }} />
         <CreateExpenseClaimForm />
       </div>
     );
