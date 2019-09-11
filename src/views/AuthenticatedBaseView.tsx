@@ -23,7 +23,7 @@ const BaseAuthenticatedBaseView = (props: BaseAuthenticatedViewProps) => {
     <Container maxWidth="xs">
       <FamexAppBar />
       <div id="AuthenticatedBaseView__app-bar-vertical-spacer" className={classes.toolbar} />
-      <div>{props.component}</div>
+      <div id="AuthenticatedBaseView__main-content">{props.component}</div>
     </Container>
   );
 };

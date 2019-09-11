@@ -18,7 +18,7 @@ class BaseExpenseClaimsView extends React.Component<ExpenseClaimsViewProps> {
 
   render() {
     return (
-      <div>
+      <div className="ExpenseClaimsView">
         <ExpenseClaimsList />
         <CreateExpenseClaimForm />
       </div>
