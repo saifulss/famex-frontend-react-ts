@@ -18,8 +18,6 @@ const BaseCreateExpenseClaimForm = (props: CreateExpenseClaimFormProps) => {
   const onInputChange = (
     event: ChangeEvent<{ name?: string; value: unknown }>
   ) => {
-    console.log(event.target);
-
     if (event.target.name === undefined)
       throw new Error("Unknown form input name");
     const acceptedInputNames = [
@@ -70,7 +68,7 @@ const BaseCreateExpenseClaimForm = (props: CreateExpenseClaimFormProps) => {
               variant="outlined"
               inputProps={{ name: "amount" }}
               onChange={onInputChange}
-              value={props.expenseClaimForm.amount}
+              value={props.expenseClaimForm.amount || ""}
             />
           </FormControl>
         </div>
@@ -97,7 +95,7 @@ const BaseCreateExpenseClaimForm = (props: CreateExpenseClaimFormProps) => {
               label="Description"
               variant="outlined"
               inputProps={{ name: "description" }}
-              value={props.expenseClaimForm.description}
+              value={props.expenseClaimForm.description || ""}
               onChange={onInputChange}
             />
           </FormControl>
