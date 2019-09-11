@@ -8,6 +8,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import ListItem from "@material-ui/core/ListItem";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { CurrencyUtils } from "../../utils/CurrencyUtils";
 
 interface ExpenseClaimProps {
   expenseClaim: ExpenseClaimModel;
@@ -21,8 +22,8 @@ export const ExpenseClaim = (props: ExpenseClaimProps) => (
       </Avatar>
     </ListItemAvatar>
     <ListItemText
-      primary={props.expenseClaim.amount}
-      secondary={props.expenseClaim.name}
+      primary={CurrencyUtils.toCurrency(props.expenseClaim.amount)}
+      secondary={`${props.expenseClaim.category.name} - ${props.expenseClaim.description}`}
     />
     <ListItemSecondaryAction>
       <IconButton edge="end" aria-label="delete">

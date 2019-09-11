@@ -2,11 +2,17 @@ import { User } from "../user/types";
 
 export interface ExpenseClaim {
   id: number;
-  name: string;
-  payer: User;
   amount: number;
+  category: Category;
+  description: string;
+  payer: User;
   settledAt: Date;
   createdAt: Date;
+}
+
+export interface Category {
+  id: number;
+  name: string;
 }
 
 // types of actions you want to support, for this domain

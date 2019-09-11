@@ -30,24 +30,24 @@ function storeExpenseClaims(
   };
 }
 
-// todo: externalize the adding of auth headers for DRY's sake
-export function updateExpenseClaim(expenseClaim: ExpenseClaim): any {
-  return async (dispatch: Dispatch, getState: () => AppState) => {
-    const response = await axios.put(
-      `${ApiConstants.BASE_URL}/expense-claims/${expenseClaim.id}`,
-      {
-        name: expenseClaim.name,
-        amount: expenseClaim.amount
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${getState().auth.accessToken}`
-        }
-      }
-    );
-
-    console.log(response);
-
-    dispatch(fetchExpenseClaims());
-  };
-}
+// // todo: externalize the adding of auth headers for DRY's sake
+// export function updateExpenseClaim(expenseClaim: ExpenseClaim): any {
+//   return async (dispatch: Dispatch, getState: () => AppState) => {
+//     const response = await axios.put(
+//       `${ApiConstants.BASE_URL}/expense-claims/${expenseClaim.id}`,
+//       {
+//         name: expenseClaim.name,
+//         amount: expenseClaim.amount
+//       },
+//       {
+//         headers: {
+//           Authorization: `Bearer ${getState().auth.accessToken}`
+//         }
+//       }
+//     );
+//
+//     console.log(response);
+//
+//     dispatch(fetchExpenseClaims());
+//   };
+// }
