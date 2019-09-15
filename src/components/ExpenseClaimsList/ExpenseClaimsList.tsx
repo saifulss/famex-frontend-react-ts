@@ -19,8 +19,18 @@ class BaseExpenseClaimsList extends React.Component<ExpenseClaimsListProps> {
     this.endOfList = React.createRef();
   }
 
-  componentDidMount(): void {
+  scrollToBottom = () => {
     this.endOfList.current!!.scrollIntoView();
+  };
+
+  componentDidMount(): void {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate(prevProps: Readonly<ExpenseClaimsListProps>, prevState: Readonly<{}>, snapshot?: any): void {
+    if (JSON.stringify(prevProps.expenseClaims) !== JSON.stringify(this.props.expenseClaims)) {
+      this.scrollToBottom();
+    }
   }
 
   render() {
