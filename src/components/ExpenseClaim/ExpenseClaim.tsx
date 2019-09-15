@@ -9,21 +9,62 @@ import IconButton from "@material-ui/core/IconButton";
 import ListItem from "@material-ui/core/ListItem";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { CurrencyUtils } from "../../utils/CurrencyUtils";
+import moment from "moment";
 
 interface ExpenseClaimProps {
   expenseClaim: ExpenseClaimModel;
 }
 
+const renderPrimary = (expenseClaim: ExpenseClaimModel) => (
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center"
+    }}
+  >
+    <div>{CurrencyUtils.toCurrency(expenseClaim.amount)}</div>
+    <div style={{ fontSize: "70%", color: "#aaaaaa" }}>
+      {moment(expenseClaim.createdAt).fromNow()}
+    </div>
+  </div>
+);
+
+const renderSecondary = (expenseClaim: ExpenseClaimModel) => (
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center"
+    }}
+  >
+    <div style={{ fontSize: "90%" }}>
+      <div>{expenseClaim.category.name}</div>
+      {renderDescriptionIfExists(expenseClaim)}
+    </div>
+  </div>
+);
+
+const renderDescriptionIfExists = (expenseClaim: ExpenseClaimModel) => {
+  if (!expenseClaim.description) return null;
+
+  return (
+    <div style={{ fontSize: "80%", color: "#aaaaaa" }}>
+      {expenseClaim.description}
+    </div>
+  );
+};
+
 export const ExpenseClaim = (props: ExpenseClaimProps) => (
-  <ListItem>
+  <ListItem alignItems="flex-start">
     <ListItemAvatar>
       <Avatar>
         <FolderIcon />
       </Avatar>
     </ListItemAvatar>
     <ListItemText
-      primary={CurrencyUtils.toCurrency(props.expenseClaim.amount)}
-      secondary={`${props.expenseClaim.category.name} - ${props.expenseClaim.description}`}
+      primary={renderPrimary(props.expenseClaim)}
+      secondary={renderSecondary(props.expenseClaim)}
     />
     <ListItemSecondaryAction>
       <IconButton edge="end" aria-label="delete">

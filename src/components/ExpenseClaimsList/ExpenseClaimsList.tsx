@@ -11,7 +11,7 @@ interface ExpenseClaimsListProps {
 }
 
 const BaseExpenseClaimsList = (props: ExpenseClaimsListProps) => (
-  <List dense={false} style={{ ...props.style }}>
+  <List dense={true} style={{ ...props.style }}>
     {props.expenseClaims.map(ec => (
       <ExpenseClaim expenseClaim={ec} key={ec.id} />
     ))}
