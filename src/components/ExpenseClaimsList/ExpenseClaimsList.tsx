@@ -10,13 +10,30 @@ interface ExpenseClaimsListProps {
   style?: object;
 }
 
-const BaseExpenseClaimsList = (props: ExpenseClaimsListProps) => (
-  <List dense={true} style={{ ...props.style }}>
-    {props.expenseClaims.map(ec => (
-      <ExpenseClaim expenseClaim={ec} key={ec.id} />
-    ))}
-  </List>
-);
+class BaseExpenseClaimsList extends React.Component<ExpenseClaimsListProps> {
+  private readonly endOfList: React.RefObject<HTMLLIElement>;
+
+  constructor(props: ExpenseClaimsListProps) {
+    super(props);
+
+    this.endOfList = React.createRef();
+  }
+
+  componentDidMount(): void {
+    this.endOfList.current!!.scrollIntoView();
+  }
+
+  render() {
+    return (
+      <List dense={true} style={{ ...this.props.style }}>
+        {this.props.expenseClaims.map(ec => (
+          <ExpenseClaim expenseClaim={ec} key={ec.id} />
+        ))}
+        <li ref={this.endOfList} />
+      </List>
+    );
+  }
+}
 
 const mapStateToProps = (state: AppState) => ({
   expenseClaims: state.expenseClaim.expenseClaims

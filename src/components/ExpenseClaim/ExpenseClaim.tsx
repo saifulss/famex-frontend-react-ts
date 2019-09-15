@@ -23,7 +23,7 @@ const renderPrimary = (expenseClaim: ExpenseClaimModel) => (
       alignItems: "center"
     }}
   >
-    <div>#{expenseClaim.id} {CurrencyUtils.toCurrency(expenseClaim.amount)}</div>
+    <div>{CurrencyUtils.toCurrencyWithoutTrailingZeroes(expenseClaim.amount / 100)}</div>
     {renderTimestamp(expenseClaim)}
   </div>
 );
@@ -46,8 +46,8 @@ const renderSecondary = (expenseClaim: ExpenseClaimModel) => (
       alignItems: "center"
     }}
   >
-    <div style={{ fontSize: "90%" }}>
-      <div>{expenseClaim.category.name}</div>
+    <div>
+      <div style={{ fontSize: "100%", color: "#aaaaaa" }}>{expenseClaim.category.name}</div>
       {renderDescriptionIfExists(expenseClaim)}
     </div>
   </div>
@@ -73,6 +73,7 @@ export const ExpenseClaim = (props: ExpenseClaimProps) => (
     <ListItemText
       primary={renderPrimary(props.expenseClaim)}
       secondary={renderSecondary(props.expenseClaim)}
+      disableTypography={true}
     />
     <ListItemSecondaryAction>
       <IconButton edge="end" aria-label="delete">
