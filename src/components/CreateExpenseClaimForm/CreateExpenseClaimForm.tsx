@@ -91,6 +91,7 @@ class BaseCreateExpenseClaimForm extends React.Component<CreateExpenseClaimFormP
             <FormControl style={{ flexGrow: 1, marginLeft: "8px" }}>
               <TextField
                 error={this.hasError("amount")}
+                type="number"
                 label="Amount"
                 variant="outlined"
                 inputProps={{ name: "amount" }}
