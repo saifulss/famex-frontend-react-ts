@@ -23,12 +23,20 @@ const renderPrimary = (expenseClaim: ExpenseClaimModel) => (
       alignItems: "center"
     }}
   >
-    <div>{CurrencyUtils.toCurrency(expenseClaim.amount)}</div>
-    <div style={{ fontSize: "70%", color: "#aaaaaa" }}>
-      {moment(expenseClaim.createdAt).fromNow()}
-    </div>
+    <div>#{expenseClaim.id} {CurrencyUtils.toCurrency(expenseClaim.amount)}</div>
+    {renderTimestamp(expenseClaim)}
   </div>
 );
+
+const renderTimestamp = (expenseClaim: ExpenseClaimModel) => {
+  const createdAt = moment(expenseClaim.createdAt);
+  let displayText = createdAt.fromNow();
+
+  const threeDaysAgo = moment().subtract(3, "d");
+  if (createdAt.isBefore(threeDaysAgo)) displayText = createdAt.format("D MMM YYYY, HH:mm");
+
+  return <div style={{ fontSize: "70%", color: "#aaaaaa" }}>{displayText}</div>;
+};
 
 const renderSecondary = (expenseClaim: ExpenseClaimModel) => (
   <div
