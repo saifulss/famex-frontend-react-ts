@@ -1,4 +1,10 @@
-import { ExpenseClaimFormModel, UPDATE_EXPENSE_CLAIM_FORM, UpdateExpenseClaimForm } from "./types";
+import {
+  CLEAR_EXPENSE_CLAIM_FORM,
+  ClearExpenseClaimForm,
+  ExpenseClaimFormModel,
+  UPDATE_EXPENSE_CLAIM_FORM,
+  UpdateExpenseClaimForm
+} from "./types";
 import { Dispatch } from "redux";
 import { AppState } from "../rootReducer";
 import axios from "axios";
@@ -11,6 +17,12 @@ export function updateExpenseClaimForm(
   return {
     type: UPDATE_EXPENSE_CLAIM_FORM,
     payload: expenseClaimFormModel
+  };
+}
+
+export function clearExpenseClaimForm(): ClearExpenseClaimForm {
+  return {
+    type: CLEAR_EXPENSE_CLAIM_FORM
   };
 }
 
@@ -34,6 +46,7 @@ export function submitExpenseClaim(): any {
       }
     );
 
+    dispatch(clearExpenseClaimForm());
     dispatch(fetchExpenseClaims());
   };
 }

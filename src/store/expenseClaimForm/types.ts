@@ -1,5 +1,6 @@
 // types of actions you want to support, for this domain
 export const UPDATE_EXPENSE_CLAIM_FORM = "UPDATE_EXPENSE_CLAIM_FORM";
+export const CLEAR_EXPENSE_CLAIM_FORM = "CLEAR_EXPENSE_CLAIM_FORM";
 
 export interface ExpenseClaimFormModel {
   currency?: string;
@@ -14,7 +15,11 @@ export interface UpdateExpenseClaimForm {
   payload: ExpenseClaimFormModel;
 }
 
-export type ExpenseClaimFormActionTypes = UpdateExpenseClaimForm;
+export interface ClearExpenseClaimForm {
+  type: typeof CLEAR_EXPENSE_CLAIM_FORM;
+}
+
+export type ExpenseClaimFormActionTypes = UpdateExpenseClaimForm | ClearExpenseClaimForm;
 
 // the slice of state that you want, for this domain
 export interface ExpenseClaimFormState {
