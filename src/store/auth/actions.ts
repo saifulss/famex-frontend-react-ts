@@ -1,7 +1,13 @@
 import axios from "axios";
 import { ApiConstants } from "../../constants/ApiConstants";
 import { User } from "../user/types";
-import { STORE_ACCESS_TOKEN, STORE_CURRENT_USER, StoreAccessTokenAction, StoreCurrentUserAction } from "./types";
+import {
+  ILoginResponseBody,
+  STORE_ACCESS_TOKEN,
+  STORE_CURRENT_USER,
+  StoreAccessTokenAction,
+  StoreCurrentUserAction
+} from "./types";
 import { AnyAction } from "redux";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { AppState } from "../rootReducer";
@@ -22,9 +28,13 @@ export const attemptAuthentication = (
       requestBody
     );
 
-    const { user, accessToken } = response.data;
-    dispatch(storeCurrentUser(user));
-    dispatch(storeToken(accessToken));
+    const { id, displayName, email, token }: ILoginResponseBody = response.data;
+    dispatch(storeCurrentUser({
+      id,
+      displayName,
+      email
+    }));
+    dispatch(storeToken(token));
   };
 };
 

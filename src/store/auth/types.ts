@@ -31,3 +31,10 @@ export interface AuthState {
   currentUser?: User;
   accessToken?: string;
 }
+
+export interface ILoginResponseBody {
+  id: number;
+  displayName: string;
+  email: string;
+  token: string;
+}
