@@ -13,12 +13,12 @@ export const attemptAuthentication = (
 ): ThunkAction<void, any, any, AnyAction> => {
   return async (dispatch: ThunkDispatch<AppState, any, AnyAction>) => {
     const requestBody = {
-      username,
+      email: username,
       password
     };
 
     const response = await axios.post(
-      `${ApiConstants.BASE_URL}/authenticate`,
+      `${ApiConstants.BASE_URL}/login`,
       requestBody
     );
 
