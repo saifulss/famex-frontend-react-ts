@@ -70,39 +70,6 @@ class BaseCreateExpenseClaimForm extends React.Component<CreateExpenseClaimFormP
         <form onSubmit={this.onSubmit}>
           <div style={{ display: "flex" }}>
             <FormControl
-              error={this.hasError("currency")}
-              variant="outlined"
-              style={{ flexGrow: 1, minWidth: "150px" }}
-            >
-              <InputLabel htmlFor="currency">Currency</InputLabel>
-              <Select
-                inputProps={{ name: "currency" }}
-                value={this.props.expenseClaimForm.currency || ""}
-                onChange={this.onInputChange}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value="SGD">SGD</MenuItem>
-                <MenuItem value="MYR">MYR</MenuItem>
-              </Select>
-            </FormControl>
-
-            <FormControl style={{ flexGrow: 1, marginLeft: "8px" }}>
-              <TextField
-                error={this.hasError("amount")}
-                type="number"
-                label="Amount"
-                variant="outlined"
-                inputProps={{ name: "amount" }}
-                onChange={this.onInputChange}
-                value={this.props.expenseClaimForm.amount || ""}
-              />
-            </FormControl>
-          </div>
-
-          <div style={{ display: "flex", marginTop: "8px" }}>
-            <FormControl
               error={this.hasError("category")}
               variant="outlined"
               style={{ flexGrow: 1 }}
@@ -129,6 +96,20 @@ class BaseCreateExpenseClaimForm extends React.Component<CreateExpenseClaimFormP
                 inputProps={{ name: "description" }}
                 value={this.props.expenseClaimForm.description || ""}
                 onChange={this.onInputChange}
+              />
+            </FormControl>
+          </div>
+
+          <div style={{ display: "flex", marginTop: "8px" }}>
+            <FormControl style={{ flexGrow: 1 }}>
+              <TextField
+                error={this.hasError("amount")}
+                type="number"
+                label="Amount"
+                variant="outlined"
+                inputProps={{ name: "amount" }}
+                onChange={this.onInputChange}
+                value={this.props.expenseClaimForm.amount || ""}
               />
             </FormControl>
           </div>
