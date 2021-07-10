@@ -22,7 +22,10 @@ export function fetchExpenseClaims(): any {
       amount: item.amount_in_cents,
       description: item.description,
       createdAt: item.created_at,
-      claimant: item.claimant
+      claimant: {
+        id: item.claimant.id,
+        displayName: item.claimant.display_name
+      }
     }));
 
     dispatch(storeExpenseClaims(expenseClaims));

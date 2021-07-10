@@ -11,7 +11,6 @@ const nameInitials = require('name-initials');
 
 interface ExpenseClaimProps {
   expenseClaim: ExpenseClaimModel;
-  userDisplayName: string;
 }
 
 const renderPrimary = (expenseClaim: ExpenseClaimModel) => (
@@ -58,7 +57,7 @@ export const ExpenseClaim = (props: ExpenseClaimProps) => (
   <ListItem>
     <ListItemAvatar>
       <Avatar>
-        {nameInitials(props.userDisplayName)}
+        {nameInitials(props.expenseClaim.claimant.displayName)}
       </Avatar>
     </ListItemAvatar>
     <ListItemText

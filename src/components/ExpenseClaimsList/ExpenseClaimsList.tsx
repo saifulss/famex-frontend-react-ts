@@ -8,7 +8,6 @@ import { ExpenseClaim } from "../ExpenseClaim/ExpenseClaim";
 interface ExpenseClaimsListProps {
   expenseClaims: ExpenseClaimModel[];
   style?: object;
-  userDisplayName: string;
 }
 
 class BaseExpenseClaimsList extends React.Component<ExpenseClaimsListProps> {
@@ -38,7 +37,7 @@ class BaseExpenseClaimsList extends React.Component<ExpenseClaimsListProps> {
     return (
       <List dense={true} style={{ ...this.props.style }}>
         {this.props.expenseClaims.map(ec => (
-          <ExpenseClaim expenseClaim={ec} userDisplayName={this.props.userDisplayName} key={ec.id} />
+          <ExpenseClaim expenseClaim={ec} key={ec.id} />
         ))}
         <li ref={this.endOfList} />
       </List>
@@ -47,8 +46,7 @@ class BaseExpenseClaimsList extends React.Component<ExpenseClaimsListProps> {
 }
 
 const mapStateToProps = (state: AppState) => ({
-  expenseClaims: state.expenseClaim.expenseClaims,
-  userDisplayName: state.auth.currentUser!!.displayName
+  expenseClaims: state.expenseClaim.expenseClaims
 });
 
 export const ExpenseClaimsList = connect(mapStateToProps)(

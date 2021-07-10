@@ -1,11 +1,11 @@
-import { User } from "../user/types";
+import { User, UserResponse } from "../user/types";
 
 export interface ExpenseClaimResponse {
   id: number;
   description: string;
   amount_in_cents: number;
   created_at: Date;
-  claimant: User;
+  claimant: UserResponse;
 }
 
 export interface ExpenseClaim {
