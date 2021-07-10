@@ -6,10 +6,13 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { connect } from "react-redux";
 import { clearAccessToken, clearCurrentUser } from "../../store/auth/actions";
+import Avatar from "@material-ui/core/Avatar";
+import { AppState } from "../../store/rootReducer";
+
+const nameInitials = require('name-initials');
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -75,6 +78,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface FamexAppBarProps {
   clearCurrentUser: () => void;
   clearAccessToken: () => void;
+  currentUserDisplayName: string;
 }
 
 const BaseFamexAppBar = (props: FamexAppBarProps) => {
@@ -126,6 +130,7 @@ const BaseFamexAppBar = (props: FamexAppBarProps) => {
     </Menu>
   );
 
+  const avatar = <Avatar>{nameInitials(props.currentUserDisplayName)}</Avatar>;
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
@@ -144,7 +149,7 @@ const BaseFamexAppBar = (props: FamexAppBarProps) => {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          {avatar}
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -168,7 +173,7 @@ const BaseFamexAppBar = (props: FamexAppBarProps) => {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              {avatar}
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
@@ -190,6 +195,10 @@ const BaseFamexAppBar = (props: FamexAppBarProps) => {
   );
 };
 
+const mapStateToProps = (state: AppState) => ({
+  currentUserDisplayName: state.auth.currentUser!!.displayName
+});
+
 const mapDispatchToProps = (dispatch: Dispatch<any>) => {
   return {
     clearCurrentUser: () => dispatch(clearCurrentUser()),
@@ -197,4 +206,4 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => {
   };
 };
 
-export const FamexAppBar = connect(null, mapDispatchToProps)(BaseFamexAppBar);
+export const FamexAppBar = connect(mapStateToProps, mapDispatchToProps)(BaseFamexAppBar);
