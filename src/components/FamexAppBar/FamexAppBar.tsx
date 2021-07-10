@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import { createStyles, fade, makeStyles, Theme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,6 +8,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import { connect } from "react-redux";
+import { clearAccessToken, clearCurrentUser } from "../../store/auth/actions";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -70,7 +72,12 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const FamexAppBar = () => {
+interface FamexAppBarProps {
+  clearCurrentUser: () => void;
+  clearAccessToken: () => void;
+}
+
+const BaseFamexAppBar = (props: FamexAppBarProps) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
@@ -98,6 +105,12 @@ export const FamexAppBar = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   }
 
+  function handleLogOutClick() {
+    props.clearCurrentUser();
+    props.clearAccessToken();
+    handleMenuClose();
+  }
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -109,7 +122,7 @@ export const FamexAppBar = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
+      <MenuItem onClick={handleLogOutClick}>Log out</MenuItem>
     </Menu>
   );
 
@@ -176,3 +189,12 @@ export const FamexAppBar = () => {
     </div>
   );
 };
+
+const mapDispatchToProps = (dispatch: Dispatch<any>) => {
+  return {
+    clearCurrentUser: () => dispatch(clearCurrentUser()),
+    clearAccessToken: () => dispatch(clearAccessToken())
+  };
+};
+
+export const FamexAppBar = connect(null, mapDispatchToProps)(BaseFamexAppBar);

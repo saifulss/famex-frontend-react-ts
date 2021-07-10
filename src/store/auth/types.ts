@@ -5,6 +5,8 @@ import { Action } from "redux";
 export const ATTEMPT_AUTHENTICATION = "ATTEMPT_AUTHENTICATION";
 export const STORE_CURRENT_USER = "STORE_CURRENT_USER";
 export const STORE_ACCESS_TOKEN = "STORE_ACCESS_TOKEN";
+export const CLEAR_CURRENT_USER = "CLEAR_CURRENT_USER";
+export const CLEAR_ACCESS_TOKEN = "CLEAR_ACCESS_TOKEN";
 
 // all the interfaces describing the shapes of actions you want to support, for this domain
 export interface AttemptAuthenticationAction extends Action<string> {
@@ -21,10 +23,20 @@ export interface StoreAccessTokenAction extends Action<string> {
   accessToken: string;
 }
 
+export interface ClearCurrentUserAction extends Action<string> {
+  type: typeof CLEAR_CURRENT_USER;
+}
+
+export interface ClearAccessTokenAction extends Action<string> {
+  type: typeof CLEAR_ACCESS_TOKEN;
+}
+
 export type AuthActionTypes =
   | AttemptAuthenticationAction
   | StoreCurrentUserAction
-  | StoreAccessTokenAction;
+  | StoreAccessTokenAction
+  | ClearCurrentUserAction
+  | ClearAccessTokenAction;
 
 // the slice of state that you want, for this domain
 export interface AuthState {

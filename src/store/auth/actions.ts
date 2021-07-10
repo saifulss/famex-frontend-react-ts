@@ -2,6 +2,9 @@ import axios from "axios";
 import { ApiConstants } from "../../constants/ApiConstants";
 import { User } from "../user/types";
 import {
+  CLEAR_ACCESS_TOKEN,
+  CLEAR_CURRENT_USER, ClearAccessTokenAction,
+  ClearCurrentUserAction,
   ILoginResponseBody,
   STORE_ACCESS_TOKEN,
   STORE_CURRENT_USER,
@@ -11,6 +14,11 @@ import {
 import { AnyAction } from "redux";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { AppState } from "../rootReducer";
+
+export const storeCurrentUser = (currentUser: User): StoreCurrentUserAction => ({
+  type: STORE_CURRENT_USER,
+  currentUser
+});
 
 // thunk
 export const attemptAuthentication = (
@@ -38,14 +46,15 @@ export const attemptAuthentication = (
   };
 };
 
-export function storeCurrentUser(currentUser: User): StoreCurrentUserAction {
-  return {
-    type: STORE_CURRENT_USER,
-    currentUser
-  };
-}
-
 const storeToken = (accessToken: string): StoreAccessTokenAction => ({
   type: STORE_ACCESS_TOKEN,
   accessToken
+});
+
+export const clearCurrentUser = (): ClearCurrentUserAction => ({
+  type: CLEAR_CURRENT_USER
+});
+
+export const clearAccessToken = (): ClearAccessTokenAction => ({
+  type: CLEAR_ACCESS_TOKEN
 });
