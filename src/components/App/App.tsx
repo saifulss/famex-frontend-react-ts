@@ -9,9 +9,9 @@ import { Provider } from "react-redux";
 import { configureAndCreateStore } from "../../store/store";
 import { AuthenticatedBaseView } from "../../views/AuthenticatedBaseView";
 import { LoginView } from "../../views/LoginView";
-import { SignIn } from "../../views/Login";
 import { CssBaseline } from "@material-ui/core";
 import { PersistGate } from "redux-persist/integration/react";
+import { RouteConstants } from "../../constants/RouteConstants";
 
 const history = createBrowserHistory();
 
@@ -23,16 +23,15 @@ export const App: React.FC = () => (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Switch>
-          <Route exact path="/" render={() => <HomeView />} />
-          <Route path="/login" component={LoginView} />
+          <Route exact path={RouteConstants.HOME} render={() => <HomeView />} />
+          <Route path={RouteConstants.LOGIN} component={LoginView} />
           <Route
             exact
-            path="/expense-claims"
+            path={RouteConstants.EXPENSE_CLAIMS}
             render={() => (
               <AuthenticatedBaseView component={<ExpenseClaimsView />} />
             )}
           />
-          <Route path="/test" render={() => <SignIn />} />
           <Route path="*" render={() => <Error404View />} />
         </Switch>
       </PersistGate>

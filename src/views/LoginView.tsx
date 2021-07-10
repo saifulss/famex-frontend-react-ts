@@ -5,6 +5,7 @@ import { attemptAuthentication } from "../store/auth/actions";
 import { AppState } from "../store/rootReducer";
 import { User } from "../store/user/types";
 import { Redirect } from "react-router";
+import { RouteConstants } from "../constants/RouteConstants";
 
 interface LoginViewProps {
   currentUser: User;
@@ -50,7 +51,7 @@ class BaseLoginView extends Component<LoginViewProps, LoginViewState> {
   };
 
   render() {
-    if (this.hasLoggedIn()) return <Redirect to="/" />;
+    if (this.hasLoggedIn()) return <Redirect to={RouteConstants.EXPENSE_CLAIMS} />;
 
     return (
       <form
