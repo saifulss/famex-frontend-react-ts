@@ -21,7 +21,7 @@ const BaseHomeView: React.FC<HomeViewProps> = props => {
 
       {props.currentUser && (
         <p>
-          Welcome, {props.currentUser.displayName}! Click{" "}
+          Welcome, {props.currentUser.email}! Click{" "}
           <Link to="/expense-claims">here</Link> to see expense claims.
         </p>
       )}

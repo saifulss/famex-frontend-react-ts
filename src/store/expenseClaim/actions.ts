@@ -1,4 +1,4 @@
-import { ExpenseClaim, STORE_EXPENSE_CLAIMS, StoreExpenseClaimsAction } from "./types";
+import { ExpenseClaim, ExpenseClaimResponse, STORE_EXPENSE_CLAIMS, StoreExpenseClaimsAction } from "./types";
 import axios from "axios";
 import { ApiConstants } from "../../constants/ApiConstants";
 import { Dispatch } from "redux";
@@ -17,7 +17,15 @@ export function fetchExpenseClaims(): any {
       }
     );
 
-    dispatch(storeExpenseClaims(response.data));
+    const expenseClaims: ExpenseClaim[] = response.data.map((item: ExpenseClaimResponse) => ({
+      id: item.id,
+      amount: item.amount_in_cents,
+      description: item.description,
+      createdAt: item.created_at,
+      claimant: item.claimant
+    }));
+
+    dispatch(storeExpenseClaims(expenseClaims));
   };
 }
 

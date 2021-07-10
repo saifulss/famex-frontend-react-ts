@@ -4,9 +4,14 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
 import { CurrencyUtils } from "../../utils/CurrencyUtils";
 import moment from "moment";
+import { ListItemAvatar } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
+
+const nameInitials = require('name-initials');
 
 interface ExpenseClaimProps {
   expenseClaim: ExpenseClaimModel;
+  userDisplayName: string;
 }
 
 const renderPrimary = (expenseClaim: ExpenseClaimModel) => (
@@ -33,17 +38,9 @@ const renderTimestamp = (expenseClaim: ExpenseClaimModel) => {
 };
 
 const renderSecondary = (expenseClaim: ExpenseClaimModel) => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center"
-    }}
-  >
-    <div>
-      <div style={{ fontSize: "100%", color: "#aaaaaa" }}>{expenseClaim.category.name}</div>
-      {renderDescriptionIfExists(expenseClaim)}
-    </div>
+  <div>
+    {/*<div style={{ fontSize: "100%", color: "#aaaaaa" }}>{expenseClaim.category.name}</div>*/}
+    {renderDescriptionIfExists(expenseClaim)}
   </div>
 );
 
@@ -58,7 +55,12 @@ const renderDescriptionIfExists = (expenseClaim: ExpenseClaimModel) => {
 };
 
 export const ExpenseClaim = (props: ExpenseClaimProps) => (
-  <ListItem alignItems="flex-start">
+  <ListItem>
+    <ListItemAvatar>
+      <Avatar>
+        {nameInitials(props.userDisplayName)}
+      </Avatar>
+    </ListItemAvatar>
     <ListItemText
       primary={renderPrimary(props.expenseClaim)}
       secondary={renderSecondary(props.expenseClaim)}

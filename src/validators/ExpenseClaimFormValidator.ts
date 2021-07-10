@@ -6,8 +6,6 @@ export interface ExpenseClaimFormValidationError {
 }
 
 export class ExpenseClaimFormValidator {
-  private readonly rules = [{ field: "currency", mandatory: true }];
-
   private readonly values: ExpenseClaimFormModel;
   public errors: ExpenseClaimFormValidationError[] = [];
 
@@ -16,13 +14,10 @@ export class ExpenseClaimFormValidator {
   }
 
   validate() {
-    if (!this.values.currency)
-      this.errors.push({ field: "currency", message: "Mandatory" });
-
     if (!this.values.amount)
       this.errors.push({ field: "amount", message: "Mandatory" });
 
-    if (!this.values.category)
-      this.errors.push({ field: "category", message: "Mandatory" });
+    if (!this.values.description)
+      this.errors.push({ field: "description", message: "Mandatory" });
   }
 }

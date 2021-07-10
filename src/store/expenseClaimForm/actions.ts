@@ -29,15 +29,20 @@ export function clearExpenseClaimForm(): ClearExpenseClaimForm {
 // thunk
 export function submitExpenseClaim(): any {
   return async (dispatch: Dispatch, getState: () => AppState) => {
-    const { amount, category, description, currency } = getState().expenseClaimForm;
+    const { amount, description } = getState().expenseClaimForm;
+
+    if (!amount) throw new Error("Amount is falsy.");
+
+    if (!getState().auth.currentUser) {
+      return;
+    }
 
     await axios.post(
       `${ApiConstants.BASE_URL}/expense-claims`,
       {
-        amount,
-        categoryId: category,
-        currency,
-        description
+        amount_in_cents: amount * 100,
+        description,
+        claimant: getState().auth.currentUser!!.id
       },
       {
         headers: {

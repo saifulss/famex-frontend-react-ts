@@ -6,10 +6,8 @@ import {
 } from "./types";
 
 const initialState: ExpenseClaimFormState = {
-  currency: undefined,
-  amount: undefined,
-  category: undefined,
-  description: undefined
+  amount: 0,
+  description: ''
 };
 
 export const expenseClaimFormReducer = (
@@ -18,9 +16,7 @@ export const expenseClaimFormReducer = (
 ): ExpenseClaimFormState => {
   if (action.type === UPDATE_EXPENSE_CLAIM_FORM) {
     return {
-      currency: action.payload.currency,
       amount: action.payload.amount,
-      category: action.payload.category,
       description: action.payload.description
     };
   }
@@ -29,8 +25,7 @@ export const expenseClaimFormReducer = (
     return {
       ...state,
       amount: undefined,
-      category: undefined,
-      description: undefined
+      description: ''
     };
   }
 

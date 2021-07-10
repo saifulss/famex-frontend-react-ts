@@ -14,27 +14,27 @@ import { AppState } from "../rootReducer";
 
 // thunk
 export const attemptAuthentication = (
-  username: string,
+  identifier: string,
   password: string
 ): ThunkAction<void, any, any, AnyAction> => {
   return async (dispatch: ThunkDispatch<AppState, any, AnyAction>) => {
     const requestBody = {
-      email: username,
+      identifier,
       password
     };
 
     const response = await axios.post(
-      `${ApiConstants.BASE_URL}/login`,
+      `${ApiConstants.BASE_URL}/auth/local`,
       requestBody
     );
 
-    const { id, displayName, email, token }: ILoginResponseBody = response.data;
+    const { jwt, user }: ILoginResponseBody = response.data;
     dispatch(storeCurrentUser({
-      id,
-      displayName,
-      email
+      id: user.id,
+      email: user.email,
+      displayName: user.display_name
     }));
-    dispatch(storeToken(token));
+    dispatch(storeToken(jwt));
   };
 };
 

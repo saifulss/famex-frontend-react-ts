@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { submitExpenseClaim, updateExpenseClaimForm } from "../../store/expenseClaimForm/actions";
 import { ExpenseClaimFormModel } from "../../store/expenseClaimForm/types";
 import { AppState } from "../../store/rootReducer";
-import { Button, FormControl, InputLabel, MenuItem, Paper, Select, TextField } from "@material-ui/core";
+import { Button, FormControl, InputAdornment, InputLabel, OutlinedInput, Paper, TextField } from "@material-ui/core";
 import { ExpenseClaimFormValidationError, ExpenseClaimFormValidator } from "../../validators/ExpenseClaimFormValidator";
 
 interface CreateExpenseClaimFormProps {
@@ -30,8 +30,7 @@ class BaseCreateExpenseClaimForm extends React.Component<CreateExpenseClaimFormP
   }
 
   onInputChange = (event: ChangeEvent<{ name?: string; value: unknown }>) => {
-    if (event.target.name === undefined)
-      throw new Error("Unknown form input name");
+    if (event.target.name === undefined) throw new Error("Unknown form input name");
     const acceptedInputNames = [
       "currency",
       "amount",
@@ -69,29 +68,29 @@ class BaseCreateExpenseClaimForm extends React.Component<CreateExpenseClaimFormP
       <Paper style={{ padding: "8px" }}>
         <form onSubmit={this.onSubmit}>
           <div style={{ display: "flex" }}>
-            <FormControl
-              error={this.hasError("category")}
-              variant="outlined"
-              style={{ flexGrow: 1 }}
-            >
-              <InputLabel htmlFor="category">Category</InputLabel>
-              <Select
-                inputProps={{ name: "category" }}
-                value={this.props.expenseClaimForm.category || ""}
-                onChange={this.onInputChange}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={1}>Cab</MenuItem>
-                <MenuItem value={2}>Groceries</MenuItem>
-                <MenuItem value={3}>Diapers</MenuItem>
-              </Select>
-            </FormControl>
+            {/*<FormControl*/}
+            {/*  error={this.hasError("category")}*/}
+            {/*  variant="outlined"*/}
+            {/*  style={{ flexGrow: 1 }}*/}
+            {/*>*/}
+            {/*  <InputLabel htmlFor="category">Category</InputLabel>*/}
+            {/*  <Select*/}
+            {/*    inputProps={{ name: "category" }}*/}
+            {/*    value={this.props.expenseClaimForm.category || ""}*/}
+            {/*    onChange={this.onInputChange}*/}
+            {/*  >*/}
+            {/*    <MenuItem value="">*/}
+            {/*      <em>None</em>*/}
+            {/*    </MenuItem>*/}
+            {/*    <MenuItem value={1}>Cab</MenuItem>*/}
+            {/*    <MenuItem value={2}>Groceries</MenuItem>*/}
+            {/*    <MenuItem value={3}>Diapers</MenuItem>*/}
+            {/*  </Select>*/}
+            {/*</FormControl>*/}
 
-            <FormControl style={{ flexGrow: 1, marginLeft: "8px" }}>
+            <FormControl style={{ flexGrow: 1 }}>
               <TextField
-                label="Description (optional)"
+                label="Description"
                 variant="outlined"
                 inputProps={{ name: "description" }}
                 value={this.props.expenseClaimForm.description || ""}
@@ -101,15 +100,16 @@ class BaseCreateExpenseClaimForm extends React.Component<CreateExpenseClaimFormP
           </div>
 
           <div style={{ display: "flex", marginTop: "8px" }}>
-            <FormControl style={{ flexGrow: 1 }}>
-              <TextField
-                error={this.hasError("amount")}
-                type="number"
-                label="Amount"
-                variant="outlined"
-                inputProps={{ name: "amount" }}
+            <FormControl style={{ flexGrow: 1 }} variant={"outlined"}>
+              <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-amount"
+                type={"number"}
+                value={this.props.expenseClaimForm.amount === undefined ? '' : this.props.expenseClaimForm.amount}
                 onChange={this.onInputChange}
-                value={this.props.expenseClaimForm.amount || ""}
+                startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                name={"amount"}
+                error={this.hasError("amount")}
               />
             </FormControl>
           </div>

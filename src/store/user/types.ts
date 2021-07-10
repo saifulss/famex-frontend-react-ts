@@ -1,7 +1,13 @@
+export interface UserResponse {
+  id: number;
+  email: string;
+  display_name: string;
+}
+
 export interface User {
   id: number;
-  displayName: string;
   email: string;
+  displayName: string;
 }
 
 export interface UserState {

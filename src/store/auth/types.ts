@@ -1,4 +1,4 @@
-import { User } from "../user/types";
+import { User, UserResponse } from "../user/types";
 import { Action } from "redux";
 
 // types of actions you want to support, for this domain
@@ -33,8 +33,6 @@ export interface AuthState {
 }
 
 export interface ILoginResponseBody {
-  id: number;
-  displayName: string;
-  email: string;
-  token: string;
+  jwt: string;
+  user: UserResponse;
 }

@@ -1,11 +1,19 @@
 import { User } from "../user/types";
 
+export interface ExpenseClaimResponse {
+  id: number;
+  description: string;
+  amount_in_cents: number;
+  created_at: Date;
+  claimant: User;
+}
+
 export interface ExpenseClaim {
   id: number;
   amount: number;
-  category: Category;
+  // category: Category;
   description: string;
-  payer: User;
+  claimant: User;
   settledAt: Date;
   createdAt: Date;
 }

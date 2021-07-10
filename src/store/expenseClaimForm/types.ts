@@ -3,9 +3,7 @@ export const UPDATE_EXPENSE_CLAIM_FORM = "UPDATE_EXPENSE_CLAIM_FORM";
 export const CLEAR_EXPENSE_CLAIM_FORM = "CLEAR_EXPENSE_CLAIM_FORM";
 
 export interface ExpenseClaimFormModel {
-  currency?: string;
   amount?: number;
-  category?: string;
   description?: string;
 }
 
