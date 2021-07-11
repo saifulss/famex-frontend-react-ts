@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+
+  webapp:
+    image: famex:latest
+    ports:
+    - 3000:80
+
+networks:
+  default:
+    external:
+      name: famex
