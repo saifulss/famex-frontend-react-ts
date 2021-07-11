@@ -40,7 +40,7 @@ export function submitExpenseClaim(): any {
     await axios.post(
       `${ApiConstants.BASE_URL}/expense-claims`,
       {
-        amount_in_cents: amount * 100,
+        amount_in_cents: Math.trunc(amount * 100),
         description,
         claimant: getState().auth.currentUser!!.id
       },
