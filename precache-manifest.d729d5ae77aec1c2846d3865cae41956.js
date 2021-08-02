@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1f8d8c0b285ec44c00105ce229c70c38",
+    "revision": "b5cebd1360861d2bbdf77deeafe3417a",
     "url": "/famex-frontend-react-ts/index.html"
   },
   {
-    "revision": "c235f70ab98b6cb328cd",
+    "revision": "0c857697eb35577b9a85",
     "url": "/famex-frontend-react-ts/static/css/main.b67dec76.chunk.css"
   },
   {
-    "revision": "2269c0eef65180c35013",
-    "url": "/famex-frontend-react-ts/static/js/2.8f0a2911.chunk.js"
+    "revision": "dd49293dde2202fd88e1",
+    "url": "/famex-frontend-react-ts/static/js/2.3ae901e9.chunk.js"
   },
   {
     "revision": "e5ec2407327402ed3c0d11c4cb0a5d30",
-    "url": "/famex-frontend-react-ts/static/js/2.8f0a2911.chunk.js.LICENSE.txt"
+    "url": "/famex-frontend-react-ts/static/js/2.3ae901e9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c235f70ab98b6cb328cd",
-    "url": "/famex-frontend-react-ts/static/js/main.261cd604.chunk.js"
+    "revision": "0c857697eb35577b9a85",
+    "url": "/famex-frontend-react-ts/static/js/main.146e6e1f.chunk.js"
   },
   {
     "revision": "e603bde3f7fcc0577f8f",
