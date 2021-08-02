@@ -10,12 +10,12 @@ import { AuthenticatedBaseView } from "../../views/AuthenticatedBaseView";
 import { LoginView } from "../../views/LoginView";
 import { CssBaseline } from "@material-ui/core";
 import { RouteConstants } from "../../constants/RouteConstants";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 const { store } = configureAndCreateStore();
 
 export const App: React.FC = () => (
-  <BrowserRouter>
+  <HashRouter>
     <CssBaseline />
     <Provider store={store}>
       <Switch>
@@ -31,5 +31,5 @@ export const App: React.FC = () => (
         <Route path="*" render={() => <Error404View />} />
       </Switch>
     </Provider>
-  </BrowserRouter>
+  </HashRouter>
 );
