@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/famex-frontend-react-ts/precache-manifest.d729d5ae77aec1c2846d3865cae41956.js"
+  "/famex-frontend-react-ts/precache-manifest.23b1e3f79e257cba7083c1e7ccdc70b5.js"
 );
 
 self.addEventListener('message', (event) => {
