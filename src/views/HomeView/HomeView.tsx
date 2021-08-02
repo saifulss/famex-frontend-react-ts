@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { User } from "../../store/user/types";
 import { connect } from "react-redux";
 import { AppState } from "../../store/rootReducer";
+import { RouteConstants } from "../../constants/RouteConstants";
 
 interface HomeViewProps {
   currentUser?: User;
@@ -15,14 +16,14 @@ const BaseHomeView: React.FC<HomeViewProps> = props => {
 
       {props.currentUser === undefined && (
         <p>
-          To begin, click <Link to="/login">here</Link> to sign in.
+          To begin, click <Link to={RouteConstants.LOGIN}>here</Link> to sign in.
         </p>
       )}
 
       {props.currentUser && (
         <p>
           Welcome, {props.currentUser.email}! Click{" "}
-          <Link to="/expense-claims">here</Link> to see expense claims.
+          <Link to={RouteConstants.EXPENSE_CLAIMS}>here</Link> to see expense claims.
         </p>
       )}
     </div>
